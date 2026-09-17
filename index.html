@@ -1,11 +1,170 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gazeta Sabatovich | C.E.I.A.S.</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+
+    <!-- Faixa de Topo do Jornal -->
+    <div class="top-bar">
+        <span>COLÔNIA MARCELINO • SÃO JOSÉ DOS PINHAIS - PR</span>
+        <span id="current-date">Edição Semanal</span>
+        <span>INEP: 41369270</span>
+    </div>
+
+    <!-- Cabeçalho Principal (Harvard Blue + Logo Oficial) -->
+    <header class="newspaper-header">
+        <div class="header-main container">
+            <div class="logo-wrapper">
+                <img src="file:///home/escola/Downloads/logo%20colegio.jpg" alt="Logo Oficial C.E.I.A.S." class="official-logo">
+            </div>
+            <div class="title-area">
+                <h1>GAZETA SABATOVICH</h1>
+                <p class="tagline">Colégio Estadual do Campo Irmã Ambrósia Sabatovich — "Educando para a Comunidade"</p>
+            </div>
+        </div>
+
+        <!-- Navegação por Abas (Baseado no QEdu) -->
+        <nav class="main-nav">
+            <ul class="tab-list">
+                <li class="tab-item active" data-tab="geral">Visão Geral</li>
+                <li class="tab-item" data-tab="ideb">IDEB</li>
+                <li class="tab-item" data-tab="aprendizado">Aprendizado</li>
+                <li class="tab-item" data-tab="censo">Censo Escolar</li>
+                <li class="tab-item" data-tab="acontecimentos">Acontecimentos</li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo das Abas QEdu e Notícias -->
+    <main class="container main-content">
+
+        <!-- Aba 1: Visão Geral -->
+        <section id="tab-geral" class="tab-content active">
+            <div class="hero-story card-hover">
+                <span class="category-tag">DESTAQUE DA SEMANA</span>
+                <h2>Ensino de Qualidade no Espaço Rural</h2>
+                <p class="article-meta">Fonte: QEdu / Censo Escolar</p>
+                <p class="article-excerpt">
+                    O C.E.C. Irmã Ambrósia Sabatovich atende à comunidade da Colônia Marcelino com etapas completas do Ensino Fundamental ao Ensino Médio, aliando tradição comunitária e excelência pedagógica.
+                </p>
+                <button id="btn-historia" class="btn-primary">Conhecer História da Patrona</button>
+            </div>
+
+            <div id="historia-modal" class="modal-box hidden">
+                <h3>Patrona Irmã Ambrósia Sabatovich</h3>
+                <p>Religiosa de origem ucraniana, a Serva de Deus Irmã Ambrósia é lembrada por sua profunda dedicação e apoio à proteção e educação comunitária. Seu legado inspira o compromisso diário do colégio com a ética e a comunidade.</p>
+                <button id="btn-close-historia" class="btn-secondary">Fechar</button>
+            </div>
+        </section>
+
+        <!-- Aba 2: IDEB -->
+        <section id="tab-ideb" class="tab-content">
+            <h2 class="section-title">Índice de Desenvolvimento da Educação Básica</h2>
+            <div class="grid-2">
+                <div class="card card-hover">
+                    <h3>IDEB Ensino Médio</h3>
+                    <div class="metric-highlight">5.0</div>
+                    <p>Nota alcançada pela instituição, refletindo o esforço contínuo na melhoria do fluxo e aprendizado dos alunos.</p>
+                </div>
+                <div class="card card-hover">
+                    <h3>Evolução Contínua</h3>
+                    <p>Ações focado no acompanhamento das turmas do 3º ano para exames do SAEB e preparação constante para vestibulares estaduais.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aba 3: Aprendizado -->
+        <section id="tab-aprendizado" class="tab-content">
+            <h2 class="section-title">Desempenho Pedagógico (QEdu)</h2>
+            <div class="grid-2">
+                <div class="card card-hover">
+                    <h3>Média Geral no ENEM</h3>
+                    <div class="metric-highlight">501,18</div>
+                    <p>Desempenho consolidado dos estudantes concluintes nas provas objetivas e de redação do Exame Nacional.</p>
+                </div>
+                <div class="card card-hover">
+                    <h3>Projetos de Aprendizagem</h3>
+                    <p>Acompanhamento focado no desenvolvimento de competências em Matemática, Língua Portuguesa e Ciências da Natureza no campo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aba 4: Censo Escolar -->
+        <section id="tab-censo" class="tab-content">
+            <h2 class="section-title">Dados do Censo Escolar (INEP)</h2>
+            <div class="grid-3">
+                <div class="card card-hover">
+                    <h3>474</h3>
+                    <p class="stat-label">Alunos Matriculados</p>
+                </div>
+                <div class="card card-hover">
+                    <h3>19</h3>
+                    <p class="stat-label">Professores Ativos</p>
+                </div>
+                <div class="card card-hover">
+                    <h3>100%</h3>
+                    <p class="stat-label">Alimentação Escolar Fornecida</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Aba 5: Acontecimentos Semanais -->
+        <section id="tab-acontecimentos" class="tab-content">
+            <h2 class="section-title">Informativo Semanal</h2>
+            <div class="grid-2">
+                <div class="news-column card-hover">
+                    <div class="column-header done">O QUE ACONTECEU</div>
+                    <article class="news-item">
+                        <span class="date">Segunda-feira</span>
+                        <h4>Oficina de Cultura Rural</h4>
+                        <p>Alunos apresentaram pesquisas sobre a história e economia da Colônia Marcelino.</p>
+                    </article>
+                    <article class="news-item">
+                        <span class="date">Quarta-feira</span>
+                        <h4>Simulado SAEB / ENEM</h4>
+                        <p>Aplicação de simulado focado no desenvolvimento das turmas de Ensino Médio.</p>
+                    </article>
+                </div>
+
+                <div class="news-column card-hover">
+                    <div class="column-header upcoming">PRÓXIMA SEMANA</div>
+                    <article class="news-item">
+                        <span class="date">Sexta-feira</span>
+                        <h4>Reunião de Pais e Mestres (APMF)</h4>
+                        <p>Encontro para prestação de contas e diálogo pedagógico com a comunidade.</p>
+                    </article>
+                    <article class="news-item">
+                        <span class="date">Terça-feira</span>
+                        <h4>Projetos Interdisciplinares do Campo</h4>
+                        <p>Apresentação das atividades sobre sustentabilidade na zona rural.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Localização -->
+        <section class="info-block">
+            <div class="editorial-box">
+                <h3>Endereço Oficial</h3>
+                <p>Estrada Vereador Domingos Benevenuto Moletta, 17173 — Colônia Marcelino</p>
+                <p>CEP 83024-899 — São José dos Pinhais / PR</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé Harvard Style com Créditos -->
+    <footer class="newspaper-footer">
+        <div class="container">
+            <p>&copy; 2026 Gazeta Sabatovich • C.E.I.A.S. — Todos os direitos reservados.</p>
+            <p class="credits">Desenvolvido por <strong>João Ribeiro</strong> e <strong>Gabriel Gomes</strong> — Turma 2ºB</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
