@@ -1,20 +1,30 @@
 /* ==========================================================================
-   PALETA HARVARD BLUE (AZUL INSTITUCIONAL) COM A "LOGO ORIGINAL"
-   Cores: Deep Navy (#0A192F), Harvard Crimson/Blue (#002147), Royal Blue (#1B4998)
+   ESTILO JORNALÍSTICO CLÁSSICO E ELEGANTE (HARVARD BLUE)
    ========================================================================== */
 
    :root {
     --harvard-navy: #002147;
-    --harvard-dark-navy: #0A192F;
+    --harvard-dark: #071328;
     --royal-blue: #1B4998;
-    --sky-accent: #3A7BD5;
-    --star-red: #D32F2F;
-    --star-yellow: #FBC02D;
-    --bg-light: #F4F7FA;
-    --bg-white: #FFFFFF;
-    --text-dark: #1A1A1A;
-    --text-muted: #555555;
-    --border-color: #D1D9E6;
+    --sky-blue: #2A65C7;
+    --light-bg: #F8FAF8;
+    --card-bg: #FFFFFF;
+    --text-color: #222222;
+    --muted-color: #666666;
+    --border-color: #DDE2E8;
+    --gold-accent: #C5A059;
+    --base-font-size: 16px;
+}
+
+/* Tema Escuro Ativado no Menu de Engrenagem */
+body.dark-theme {
+    --harvard-navy: #1B4998;
+    --harvard-dark: #050B14;
+    --light-bg: #0D1520;
+    --card-bg: #162232;
+    --text-color: #E8EEF5;
+    --muted-color: #98A9BC;
+    --border-color: #24354A;
 }
 
 * {
@@ -23,11 +33,45 @@
     padding: 0;
 }
 
+html {
+    font-size: var(--base-font-size);
+}
+
 body {
     font-family: 'Georgia', 'Times New Roman', serif;
-    background-color: var(--bg-light);
-    color: var(--text-dark);
+    background-color: var(--light-bg);
+    color: var(--text-color);
     line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Animação Suave e Discreta de Fundo */
+.animated-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.12;
+    animation: floatBg 20s infinite alternate ease-in-out;
+}
+
+.shape-1 { width: 450px; height: 450px; background: var(--royal-blue); top: -100px; left: -100px; }
+.shape-2 { width: 500px; height: 500px; background: var(--sky-blue); bottom: -150px; right: -100px; animation-delay: -6s; }
+.shape-3 { width: 350px; height: 350px; background: var(--gold-accent); top: 35%; left: 65%; animation-delay: -12s; }
+
+@keyframes floatBg {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(50px, 70px) scale(1.1); }
 }
 
 .container {
@@ -36,301 +80,473 @@ body {
     padding: 0 20px;
 }
 
-/* Faixa do Topo */
+/* Topo e Cabeçalho */
 .top-bar {
-    background-color: var(--harvard-dark-navy);
-    color: #FFF;
-    display: flex;
-    justify-content: space-between;
-    padding: 8px 20px;
-    font-family: sans-serif;
+    background-color: var(--harvard-dark);
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
     font-size: 0.75rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Cabeçalho */
+.top-bar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .newspaper-header {
-    background-color: var(--bg-white);
-    border-bottom: 4px solid var(--harvard-navy);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background-color: var(--card-bg);
+    border-bottom: 3px solid var(--harvard-navy);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .header-main {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 20px 0;
-    gap: 25px;
+    justify-content: space-between;
+    padding: 25px 0;
+    gap: 20px;
 }
 
-.logo-wrapper {
-    max-width: 130px;
-}
-
-.official-logo {
-    width: 100%;
+.school-logo {
+    max-width: 120px;
     height: auto;
     display: block;
 }
 
-.title-area h1 {
+.title-box {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.main-title {
     font-size: 2.8rem;
+    font-weight: bold;
     color: var(--harvard-navy);
-    letter-spacing: 2px;
-    font-weight: normal;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.school-name {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: var(--royal-blue);
+    margin-top: 4px;
 }
 
 .tagline {
-    font-family: sans-serif;
+    font-style: italic;
     font-size: 0.9rem;
-    color: var(--text-muted);
+    color: var(--muted-color);
 }
 
-/* Navegação por Abas */
-.main-nav {
+.cms-btn {
+    background-color: var(--harvard-navy);
+    color: #FFF;
+    border: 1px solid var(--gold-accent);
+    padding: 10px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.cms-btn:hover {
+    background-color: var(--royal-blue);
+}
+
+/* Barra de Navegação */
+.nav-bar {
     background-color: var(--harvard-navy);
 }
 
-.tab-list {
+.nav-content {
     display: flex;
-    justify-content: center;
-    list-style: none;
-    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.tab-item {
+.nav-links {
+    display: flex;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
     color: #FFF;
     padding: 14px 20px;
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     font-size: 0.85rem;
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
-    letter-spacing: 1px;
-    transition: background 0.3s;
+    transition: background 0.2s;
 }
 
-.tab-item:hover, .tab-item.active {
+.nav-btn:hover, .nav-btn.active {
     background-color: var(--royal-blue);
-    border-bottom: 3px solid var(--star-yellow);
+    border-bottom: 3px solid var(--gold-accent);
 }
 
-/* Conteúdo */
-.main-content {
-    margin-top: 30px;
-    min-height: 450px;
+.search-box input {
+    padding: 6px 14px;
+    border-radius: 15px;
+    border: 1px solid #CCC;
+    font-size: 0.85rem;
 }
 
-.tab-content {
-    display: none;
+/* Banner de Alerta */
+.alert-container { margin-top: 20px; }
+.alert-banner {
+    background: #FFF9E6;
+    border: 1px solid #FFE599;
+    border-left: 5px solid var(--gold-accent);
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
 }
 
-.tab-content.active {
-    display: block;
+.alert-label {
+    background: var(--harvard-navy);
+    color: #FFF;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    margin-right: 12px;
 }
 
-.section-title {
-    font-size: 2rem;
-    color: var(--harvard-navy);
-    text-align: center;
+marquee {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+/* Estrutura Principal */
+.main-layout {
+    margin-top: 25px;
+    min-height: 550px;
+}
+
+.tab-pane { display: none; }
+.tab-pane.active { display: block; }
+
+/* Destaque Principal (Hero) */
+.hero-article {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 6px solid var(--harvard-navy);
+    padding: 28px;
     margin-bottom: 30px;
-    position: relative;
 }
 
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
+.category-badge {
     background-color: var(--royal-blue);
-    margin: 8px auto 0;
+    color: #FFF;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 3px 8px;
+    text-transform: uppercase;
 }
 
-/* Grid & Cards */
-.grid-2 {
+.hero-title {
+    font-size: 1.8rem;
+    color: var(--harvard-navy);
+    margin: 10px 0 8px 0;
+}
+
+.article-meta {
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: var(--muted-color);
+    margin-bottom: 12px;
+}
+
+.hero-excerpt {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.read-more-btn {
+    background: none;
+    border: none;
+    color: var(--royal-blue);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.read-more-btn:hover { text-decoration: underline; }
+
+/* Grade de Conteúdo */
+.content-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
+    grid-template-columns: 2.2fr 1fr;
+    gap: 30px;
 }
 
-.grid-3 {
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+}
+
+.filter-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 5px 12px;
+    cursor: pointer;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background-color: var(--harvard-navy);
+    color: #FFF;
+}
+
+.news-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.news-card h3 {
+    font-size: 1.3rem;
+    color: var(--harvard-navy);
+    margin: 8px 0;
+}
+
+/* Sidebar */
+.sidebar-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 25px;
+}
+
+.widget-title {
+    font-size: 1.1rem;
+    color: var(--harvard-navy);
+    border-bottom: 2px solid var(--royal-blue);
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.event-list { list-style: none; }
+.event-list li { display: flex; gap: 12px; margin-bottom: 15px; }
+.event-date {
+    background: var(--harvard-navy);
+    color: #FFF;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 6px 10px;
+    height: fit-content;
+    border-radius: 3px;
+}
+
+.event-details p { font-size: 0.85rem; color: var(--muted-color); }
+
+.qedu-quick-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+}
+
+/* Seções e Páginas Internas */
+.section-title {
+    font-size: 1.8rem;
+    color: var(--harvard-navy);
+    border-bottom: 3px solid var(--gold-accent);
+    padding-bottom: 8px;
+    margin-bottom: 25px;
+}
+
+.metrics-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    gap: 20px;
 }
 
-.card {
-    background: var(--bg-white);
+.metric-card {
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 30px;
-    border-top: 4px solid var(--royal-blue);
+    padding: 25px;
+    text-align: center;
 }
 
-.card-hover {
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card-hover:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.metric-highlight {
-    font-size: 3.5rem;
+.big-number {
+    font-size: 3rem;
     font-weight: bold;
     color: var(--royal-blue);
     margin: 10px 0;
 }
 
-.stat-label {
-    font-family: sans-serif;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    color: var(--text-muted);
+/* Aba Sobre e Formulário */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
 }
 
-/* Hero Article */
-.hero-story {
-    background: var(--bg-white);
-    padding: 35px;
+.about-form-box {
+    background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-left: 6px solid var(--royal-blue);
+    padding: 25px;
 }
 
-.category-tag {
-    background-color: var(--royal-blue);
-    color: #FFF;
-    font-family: sans-serif;
-    font-size: 0.7rem;
-    padding: 4px 8px;
-    font-weight: bold;
-}
-
-.hero-story h2 {
-    font-size: 2.2rem;
-    color: var(--harvard-navy);
-    margin: 15px 0 10px 0;
-}
-
-.article-meta {
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-bottom: 15px;
-}
-
-/* Botões */
-.btn-primary, .btn-secondary {
-    padding: 10px 20px;
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-    cursor: pointer;
-    text-transform: uppercase;
-    border: none;
+.about-form-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     margin-top: 15px;
 }
 
-.btn-primary {
-    background-color: var(--harvard-navy);
-    color: #FFF;
-}
-
-.btn-secondary {
-    background-color: var(--text-muted);
-    color: #FFF;
-}
-
-.modal-box {
-    background-color: #FFF8E7;
-    border: 1px solid #E6C280;
-    padding: 25px;
-    margin-top: 20px;
-}
-
-.hidden {
-    display: none;
-}
-
-/* Colunas do Jornal */
-.news-column {
-    background: var(--bg-white);
+.about-form-box input, .about-form-box textarea {
+    padding: 10px;
     border: 1px solid var(--border-color);
-    padding: 25px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
 }
 
-.column-header {
-    padding: 8px;
+.submit-btn {
+    background: var(--harvard-navy);
     color: #FFF;
-    font-family: sans-serif;
-    font-size: 0.85rem;
-    text-align: center;
+    border: none;
+    padding: 12px;
+    font-family: Arial, sans-serif;
     font-weight: bold;
-    margin-bottom: 20px;
+    cursor: pointer;
 }
 
-.column-header.done {
-    background-color: var(--harvard-dark-navy);
+/* Widget Engrenagem de Opções */
+.settings-widget {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 999;
 }
 
-.column-header.upcoming {
-    background-color: var(--royal-blue);
+.gear-btn {
+    background: var(--harvard-navy);
+    color: #FFF;
+    border: 2px solid var(--gold-accent);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
 }
 
-.news-item {
+.gear-btn:hover { transform: rotate(90deg); }
+
+.settings-menu {
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    padding: 15px;
+    width: 230px;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+}
+
+.settings-menu.hidden { display: none; }
+
+.settings-menu h4 {
+    font-size: 0.85rem;
+    color: var(--harvard-navy);
+    margin-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+    padding-bottom: 5px;
 }
 
-.news-item .date {
-    font-family: sans-serif;
-    font-size: 0.75rem;
-    font-weight: bold;
-    color: var(--royal-blue);
-    text-transform: uppercase;
+.setting-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 12px;
+    font-size: 0.8rem;
 }
 
-/* Editorial & Rodapé */
-.info-block {
-    margin: 40px 0;
-}
-
-.editorial-box {
-    background: var(--bg-white);
+.opt-btn {
+    background: var(--light-bg);
+    color: var(--harvard-navy);
     border: 1px solid var(--border-color);
-    padding: 25px;
-    text-align: center;
-    font-family: sans-serif;
+    padding: 6px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
 }
 
+.font-btns { display: flex; gap: 5px; }
+
+/* Modais */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 33, 71, 0.7);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
+
+.modal-overlay.hidden { display: none; }
+
+.modal-card {
+    background: var(--card-bg);
+    color: var(--text-color);
+    width: 90%; max-width: 600px;
+    padding: 30px; position: relative;
+    max-height: 90vh; overflow-y: auto;
+}
+
+.close-modal-btn {
+    position: absolute; top: 15px; right: 15px;
+    background: none; border: none; font-size: 1.2rem;
+    cursor: pointer; color: var(--text-color);
+}
+
+.cms-subtitle { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--muted-color); margin-bottom: 15px; }
+.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; font-family: Arial, sans-serif; font-size: 0.85rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.form-group input, .form-group select, .form-group textarea { padding: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); }
+.gold-submit { background: var(--royal-blue); }
+
+/* Rodapé */
 .newspaper-footer {
-    background-color: var(--harvard-dark-navy);
-    color: #999;
-    text-align: center;
+    background: var(--harvard-dark);
+    color: #AAA;
     padding: 30px 0;
-    font-family: sans-serif;
+    margin-top: 50px;
+    border-top: 4px solid var(--harvard-navy);
+    font-family: Arial, sans-serif;
     font-size: 0.85rem;
-    border-top: 4px solid var(--royal-blue);
 }
 
-.credits {
-    margin-top: 10px;
-    color: #FFF;
-    font-size: 0.9rem;
-}
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.students-credit strong { color: var(--gold-accent); }
 
-.credits strong {
-    color: var(--star-yellow);
-}
-
+/* Responsividade */
 @media (max-width: 768px) {
-    .header-main {
-        flex-direction: column;
-        text-align: center;
-    }
-    .tab-list {
-        flex-wrap: wrap;
-    }
+    .header-main, .footer-content, .top-bar-content, .nav-content { flex-direction: column; text-align: center; gap: 12px; }
+    .content-grid, .about-grid, .form-row { grid-template-columns: 1fr; }
 }

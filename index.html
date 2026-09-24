@@ -8,160 +8,312 @@
 </head>
 <body>
 
-    <!-- Faixa de Topo do Jornal -->
-    <div class="top-bar">
-        <span>COLÔNIA MARCELINO • SÃO JOSÉ DOS PINHAIS - PR</span>
-        <span id="current-date">Edição Semanal</span>
-        <span>INEP: 41369270</span>
+    <!-- Fundo Animado Suave -->
+    <div class="animated-bg">
+        <div class="bg-shape shape-1"></div>
+        <div class="bg-shape shape-2"></div>
+        <div class="bg-shape shape-3"></div>
     </div>
 
-    <!-- Cabeçalho Principal (Harvard Blue + Logo Oficial) -->
+    <!-- Faixa de Topo (Informações e Data) -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <span class="location-tag">📍 SÃO JOSÉ DOS PINHAIS - PR • COLÔNIA MARCELINO</span>
+            <span id="current-date" class="date-tag">Carregando data...</span>
+            <span class="email-tag">E-mail Gestor: <strong>gomes.souza17@escola.pr.gov.br</strong></span>
+        </div>
+    </div>
+
+    <!-- Cabeçalho Clássico de Jornal -->
     <header class="newspaper-header">
-        <div class="header-main container">
-            <div class="logo-wrapper">
-                <img src="file:///home/escola/Downloads/logo%20colegio.jpg" alt="Logo Oficial C.E.I.A.S." class="official-logo">
+        <div class="container header-main">
+            <div class="logo-box">
+                <img src="file:///home/escola/Downloads/logo%20colegio.jpg" alt="Logo C.E.I.A.S." class="school-logo">
             </div>
-            <div class="title-area">
-                <h1>GAZETA SABATOVICH</h1>
-                <p class="tagline">Colégio Estadual do Campo Irmã Ambrósia Sabatovich — "Educando para a Comunidade"</p>
+            
+            <div class="title-box">
+                <h1 class="main-title">GAZETA SABATOVICH</h1>
+                <p class="school-name">COLÉGIO ESTADUAL DO CAMPO IRMÃ AMBRÓSIA SABATOVICH</p>
+                <p class="tagline">"Educando para a Comunidade • Tradição e Futuro no Campo"</p>
+            </div>
+
+            <div class="cms-action-box">
+                <button id="open-cms-btn" class="cms-btn">🔑 Publicar / Gestão CMS</button>
             </div>
         </div>
 
-        <!-- Navegação por Abas (Baseado no QEdu) -->
-        <nav class="main-nav">
-            <ul class="tab-list">
-                <li class="tab-item active" data-tab="geral">Visão Geral</li>
-                <li class="tab-item" data-tab="ideb">IDEB</li>
-                <li class="tab-item" data-tab="aprendizado">Aprendizado</li>
-                <li class="tab-item" data-tab="censo">Censo Escolar</li>
-                <li class="tab-item" data-tab="acontecimentos">Acontecimentos</li>
-            </ul>
+        <!-- Menu de Navegação -->
+        <nav class="nav-bar">
+            <div class="container nav-content">
+                <div class="nav-links">
+                    <button class="nav-btn active" data-tab="home">Início</button>
+                    <button class="nav-btn" data-tab="ideb">IDEB</button>
+                    <button class="nav-btn" data-tab="aprendizado">Aprendizado (QEdu)</button>
+                    <button class="nav-btn" data-tab="censo">Censo Escolar</button>
+                    <button class="nav-btn" data-tab="sobre">Sobre & Contato</button>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Buscar no jornal...">
+                </div>
+            </div>
         </nav>
     </header>
 
-    <!-- Conteúdo das Abas QEdu e Notícias -->
-    <main class="container main-content">
+    <!-- Mural de Comunicados Rápidos -->
+    <div class="container alert-container">
+        <div class="alert-banner">
+            <span class="alert-label">AVISOS RÁPIDOS</span>
+            <marquee behavior="scroll" direction="left" id="urgent-notice">
+                📢 Gestão de Notícias: gomes.souza17@escola.pr.gov.br | Reunião de Pais e Mestres agendada para sexta-feira às 18h30 | Matrículas abertas!
+            </marquee>
+        </div>
+    </div>
 
-        <!-- Aba 1: Visão Geral -->
-        <section id="tab-geral" class="tab-content active">
-            <div class="hero-story card-hover">
-                <span class="category-tag">DESTAQUE DA SEMANA</span>
-                <h2>Ensino de Qualidade no Espaço Rural</h2>
-                <p class="article-meta">Fonte: QEdu / Censo Escolar</p>
-                <p class="article-excerpt">
-                    O C.E.C. Irmã Ambrósia Sabatovich atende à comunidade da Colônia Marcelino com etapas completas do Ensino Fundamental ao Ensino Médio, aliando tradição comunitária e excelência pedagógica.
-                </p>
-                <button id="btn-historia" class="btn-primary">Conhecer História da Patrona</button>
+    <!-- Conteúdo Principal -->
+    <main class="container main-layout">
+
+        <!-- ABA 1: HOME (JORNAL) -->
+        <section id="tab-home" class="tab-pane active">
+            
+            <!-- Destaque Principal (Hero) -->
+            <div class="hero-article">
+                <div class="hero-content">
+                    <span class="category-badge">PROJETOS E AULAS</span>
+                    <h2 class="hero-title">Feira do Conhecimento do Campo Celebra Sustentabilidade na Colônia Marcelino</h2>
+                    <p class="article-meta">Por: Redação do Grêmio • Responsável: gomes.souza17@escola.pr.gov.br</p>
+                    <p class="hero-excerpt">Estudantes do C.E.I.A.S. apresentaram maquetes, hortas comunitárias e inovações em agricultura familiar, fortalecendo os laços socioculturais com a comunidade rural local.</p>
+                    <button class="read-more-btn" onclick="openArticleModal('feira-campo')">Ler Matéria Completa →</button>
+                </div>
             </div>
 
-            <div id="historia-modal" class="modal-box hidden">
-                <h3>Patrona Irmã Ambrósia Sabatovich</h3>
-                <p>Religiosa de origem ucraniana, a Serva de Deus Irmã Ambrósia é lembrada por sua profunda dedicação e apoio à proteção e educação comunitária. Seu legado inspira o compromisso diário do colégio com a ética e a comunidade.</p>
-                <button id="btn-close-historia" class="btn-secondary">Fechar</button>
+            <!-- Grade do Conteúdo (Feed + Lateral) -->
+            <div class="content-grid">
+                
+                <!-- Coluna Principal do Feed -->
+                <div class="news-feed-column">
+                    <div class="filter-bar">
+                        <span class="filter-label">Filtrar Categoria:</span>
+                        <button class="filter-btn active" data-cat="todos">Todas</button>
+                        <button class="filter-btn" data-cat="projetos">Projetos</button>
+                        <button class="filter-btn" data-cat="esportes">Esportes</button>
+                        <button class="filter-btn" data-cat="cultura">Cultura</button>
+                        <button class="filter-btn" data-cat="institucional">Avisos</button>
+                    </div>
+
+                    <div id="news-container" class="news-list">
+                        <!-- Notícias inseridas via JS -->
+                    </div>
+                </div>
+
+                <!-- Barra Lateral (Sidebar) -->
+                <aside class="sidebar-column">
+                    <div class="sidebar-card">
+                        <h3 class="widget-title">📅 Agenda de Eventos</h3>
+                        <ul class="event-list">
+                            <li>
+                                <div class="event-date">28 SET</div>
+                                <div class="event-details">
+                                    <strong>Simulado Prova Paraná</strong>
+                                    <p>Turmas do 9º Ano e 3º Médio</p>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="event-date">05 OUT</div>
+                                <div class="event-details">
+                                    <strong>Mostra Cultural Local</strong>
+                                    <p>Apresentações folclóricas da Colônia</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card qedu-widget">
+                        <h3 class="widget-title">📊 Dados Oficiais (QEdu)</h3>
+                        <div class="qedu-quick-item">
+                            <span>Código INEP</span>
+                            <strong>41369270</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>IDEB Médio</span>
+                            <strong>5.0</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Total de Alunos</span>
+                            <strong>474</strong>
+                        </div>
+                    </div>
+                </aside>
+
             </div>
         </section>
 
-        <!-- Aba 2: IDEB -->
-        <section id="tab-ideb" class="tab-content">
-            <h2 class="section-title">Índice de Desenvolvimento da Educação Básica</h2>
-            <div class="grid-2">
-                <div class="card card-hover">
+        <!-- ABA 2: IDEB -->
+        <section id="tab-ideb" class="tab-pane">
+            <h2 class="section-title">Índice de Desenvolvimento da Educação Básica (IDEB)</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
                     <h3>IDEB Ensino Médio</h3>
-                    <div class="metric-highlight">5.0</div>
-                    <p>Nota alcançada pela instituição, refletindo o esforço contínuo na melhoria do fluxo e aprendizado dos alunos.</p>
+                    <div class="big-number">5.0</div>
+                    <p>Meta em constante evolução por meio de práticas pedagógicas integradas à realidade do campo.</p>
                 </div>
-                <div class="card card-hover">
-                    <h3>Evolução Contínua</h3>
-                    <p>Ações focado no acompanhamento das turmas do 3º ano para exames do SAEB e preparação constante para vestibulares estaduais.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Aba 3: Aprendizado -->
-        <section id="tab-aprendizado" class="tab-content">
-            <h2 class="section-title">Desempenho Pedagógico (QEdu)</h2>
-            <div class="grid-2">
-                <div class="card card-hover">
-                    <h3>Média Geral no ENEM</h3>
-                    <div class="metric-highlight">501,18</div>
-                    <p>Desempenho consolidado dos estudantes concluintes nas provas objetivas e de redação do Exame Nacional.</p>
-                </div>
-                <div class="card card-hover">
-                    <h3>Projetos de Aprendizagem</h3>
-                    <p>Acompanhamento focado no desenvolvimento de competências em Matemática, Língua Portuguesa e Ciências da Natureza no campo.</p>
+                <div class="metric-card">
+                    <h3>Metodologia de Avaliação</h3>
+                    <p>Foco na redução do abandono escolar, melhoria no fluxo e alcance dos índices do SAEB.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Aba 4: Censo Escolar -->
-        <section id="tab-censo" class="tab-content">
-            <h2 class="section-title">Dados do Censo Escolar (INEP)</h2>
-            <div class="grid-3">
-                <div class="card card-hover">
-                    <h3>474</h3>
-                    <p class="stat-label">Alunos Matriculados</p>
+        <!-- ABA 3: APRENDIZADO -->
+        <section id="tab-aprendizado" class="tab-pane">
+            <h2 class="section-title">Dados de Aprendizado e Desempenho (SAEB)</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Língua Portuguesa (9º Ano)</h3>
+                    <div class="big-number">32%</div>
+                    <p>Nível adequado em leitura, interpretação e coesão textual.</p>
                 </div>
-                <div class="card card-hover">
-                    <h3>19</h3>
-                    <p class="stat-label">Professores Ativos</p>
+                <div class="metric-card">
+                    <h3>Matemática (9º Ano)</h3>
+                    <div class="big-number">26%</div>
+                    <p>Proficiência adequada em raciocínio lógico e resolução de problemas.</p>
                 </div>
-                <div class="card card-hover">
-                    <h3>100%</h3>
-                    <p class="stat-label">Alimentação Escolar Fornecida</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Aba 5: Acontecimentos Semanais -->
-        <section id="tab-acontecimentos" class="tab-content">
-            <h2 class="section-title">Informativo Semanal</h2>
-            <div class="grid-2">
-                <div class="news-column card-hover">
-                    <div class="column-header done">O QUE ACONTECEU</div>
-                    <article class="news-item">
-                        <span class="date">Segunda-feira</span>
-                        <h4>Oficina de Cultura Rural</h4>
-                        <p>Alunos apresentaram pesquisas sobre a história e economia da Colônia Marcelino.</p>
-                    </article>
-                    <article class="news-item">
-                        <span class="date">Quarta-feira</span>
-                        <h4>Simulado SAEB / ENEM</h4>
-                        <p>Aplicação de simulado focado no desenvolvimento das turmas de Ensino Médio.</p>
-                    </article>
-                </div>
-
-                <div class="news-column card-hover">
-                    <div class="column-header upcoming">PRÓXIMA SEMANA</div>
-                    <article class="news-item">
-                        <span class="date">Sexta-feira</span>
-                        <h4>Reunião de Pais e Mestres (APMF)</h4>
-                        <p>Encontro para prestação de contas e diálogo pedagógico com a comunidade.</p>
-                    </article>
-                    <article class="news-item">
-                        <span class="date">Terça-feira</span>
-                        <h4>Projetos Interdisciplinares do Campo</h4>
-                        <p>Apresentação das atividades sobre sustentabilidade na zona rural.</p>
-                    </article>
+                <div class="metric-card">
+                    <h3>Média ENEM</h3>
+                    <div class="big-number">501,18</div>
+                    <p>Desempenho geral alcançado pelos estudantes do 3º ano do Ensino Médio.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Seção de Localização -->
-        <section class="info-block">
-            <div class="editorial-box">
-                <h3>Endereço Oficial</h3>
-                <p>Estrada Vereador Domingos Benevenuto Moletta, 17173 — Colônia Marcelino</p>
-                <p>CEP 83024-899 — São José dos Pinhais / PR</p>
+        <!-- ABA 4: CENSO ESCOLAR -->
+        <section id="tab-censo" class="tab-pane">
+            <h2 class="section-title">Censo Escolar e Estrutura (INEP: 41369270)</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Matrículas Ativas</h3>
+                    <div class="big-number">474</div>
+                    <p>Atendimento regular para Ensino Fundamental II e Ensino Médio do Campo.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Corpo Docente</h3>
+                    <div class="big-number">19</div>
+                    <p>Professores dedicados ao desenvolvimento educacional e social da Colônia Marcelino.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 5: SOBRE E CONTATO -->
+        <section id="tab-sobre" class="tab-pane">
+            <h2 class="section-title">Sobre a Instituição & Contato Directo</h2>
+            <div class="about-grid">
+                <div class="about-info">
+                    <h3>Nossa História e Patrona</h3>
+                    <p>A Serva de Deus Irmã Ambrósia Sabatovich dedicou sua vida ao amparo humano e educacional. O colégio mantém viva sua memória, promovendo ensino de qualidade na comunidade rural da Colônia Marcelino.</p>
+                    <div class="contact-details">
+                        <p>📧 <strong>E-mail Gestor:</strong> gomes.souza17@escola.pr.gov.br</p>
+                        <p>📍 <strong>Endereço:</strong> Estrada Ver. Domingos Benevenuto Moletta, 17173 — São José dos Pinhais - PR</p>
+                    </div>
+                </div>
+                <div class="about-form-box">
+                    <h3>Fale com a Redação ou Coordenação</h3>
+                    <form onsubmit="handleContact(event)">
+                        <input type="text" placeholder="Seu Nome Completo" required>
+                        <input type="email" placeholder="Seu E-mail" required>
+                        <textarea placeholder="Escreva sua mensagem aqui..." rows="4" required></textarea>
+                        <button type="submit" class="submit-btn">Enviar Mensagem</button>
+                    </form>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Rodapé Harvard Style com Créditos -->
+    <!-- Botão de Engrenagem (Menu Flutuante de Opções) -->
+    <div class="settings-widget">
+        <button id="gear-btn" class="gear-btn" title="Configurações e Acessibilidade">⚙️</button>
+        <div id="settings-menu" class="settings-menu hidden">
+            <h4>⚙️ Personalização</h4>
+            <div class="setting-row">
+                <span>Aparência:</span>
+                <button id="toggle-theme-btn" class="opt-btn">🌓 Alternar Tema</button>
+            </div>
+            <div class="setting-row">
+                <span>Tamanho da Fonte:</span>
+                <div class="font-btns">
+                    <button id="font-decrease" class="opt-btn">A-</button>
+                    <button id="font-reset" class="opt-btn">A</button>
+                    <button id="font-increase" class="opt-btn">A+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Leitura da Matéria -->
+    <div id="article-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <button class="close-modal-btn" onclick="closeArticleModal()">✕</button>
+            <div id="modal-article-content"></div>
+        </div>
+    </div>
+
+    <!-- Modal do Painel CMS (Publicar / Remanejamento de Notícias) -->
+    <div id="cms-modal" class="modal-overlay hidden">
+        <div class="modal-card cms-card">
+            <button class="close-modal-btn" onclick="closeCMSModal()">✕</button>
+            <h2>🔑 Painel de Gestão e Publicação (CMS)</h2>
+            <p class="cms-subtitle">E-mail Gestor Responsável: <strong>gomes.souza17@escola.pr.gov.br</strong></p>
+
+            <form id="cms-form" onsubmit="handleCMSPublish(event)">
+                <div class="form-group">
+                    <label>E-mail do Administrador:</label>
+                    <input type="email" id="cms-email" value="gomes.souza17@escola.pr.gov.br" readonly required>
+                </div>
+                <div class="form-group">
+                    <label>Título da Notícia ou Evento:</label>
+                    <input type="text" id="cms-title" placeholder="Digite o título..." required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Categoria:</label>
+                        <select id="cms-category" required>
+                            <option value="projetos">Projetos</option>
+                            <option value="esportes">Esportes</option>
+                            <option value="cultura">Cultura</option>
+                            <option value="institucional">Avisos</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ação do Sistema:</label>
+                        <select id="cms-action" required>
+                            <option value="publish">Publicar Novo Conteúdo</option>
+                            <option value="remove">Tirar do Ar (Remover)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Resumo Curto (Feed):</label>
+                    <input type="text" id="cms-excerpt" placeholder="Breve resumo..." required>
+                </div>
+                <div class="form-group">
+                    <label>Texto Completo:</label>
+                    <textarea id="cms-content" rows="4" placeholder="Escreva o texto completo da matéria..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn gold-submit">Confirmar Operação no Jornal</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Rodapé Tradicional -->
     <footer class="newspaper-footer">
-        <div class="container">
-            <p>&copy; 2026 Gazeta Sabatovich • C.E.I.A.S. — Todos os direitos reservados.</p>
-            <p class="credits">Desenvolvido por <strong>João Ribeiro</strong> e <strong>Gabriel Gomes</strong> — Turma 2ºB</p>
+        <div class="container footer-content">
+            <div class="footer-left">
+                <p>&copy; 2026 Gazeta Sabatovich — C.E.I.A.S.</p>
+                <p>Contato Gestor: <strong>gomes.souza17@escola.pr.gov.br</strong></p>
+            </div>
+            <div class="footer-right">
+                <p>Desenvolvido por alunos do 2ºB:</p>
+                <p class="students-credit"><strong>João Ribeiro</strong> & <strong>Gabriel Gomes</strong></p>
+            </div>
         </div>
     </footer>
 
