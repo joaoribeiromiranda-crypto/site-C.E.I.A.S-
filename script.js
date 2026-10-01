@@ -1,7 +1,7 @@
 // E-mail Gestor Responsável
 const MANAGER_EMAIL = "gomes.souza17@escola.pr.gov.br";
 
-// Banco de dados em memória
+// Banco de dados inicial em memória
 let newsDatabase = [
     {
         id: 'feira-campo',
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Menu de Engrenagem (Acessibilidade e Tema)
+    // 6. Engrenagem: Modo Noturno e Acessibilidade de Fonte
     const gearBtn = document.getElementById('gear-btn');
     const settingsMenu = document.getElementById('settings-menu');
     const toggleThemeBtn = document.getElementById('toggle-theme-btn');
@@ -160,7 +160,7 @@ function openArticleModal(articleId) {
     const modalContent = document.getElementById('modal-article-content');
     modalContent.innerHTML = `
         <span class="category-badge">${article.category.toUpperCase()}</span>
-        <h2 style="font-size: 1.7rem; color: var(--harvard-navy); margin: 12px 0 8px 0;">${article.title}</h2>
+        <h2 style="font-size: 1.7rem; color: var(--royal-blue); margin: 12px 0 8px 0;">${article.title}</h2>
         <p class="article-meta">Autor: <strong>${article.author}</strong> | Data: ${article.date}</p>
         <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--border-color);">
         <p style="font-size: 1rem; line-height: 1.7;">${article.content}</p>
@@ -191,9 +191,9 @@ function handleCMSPublish(event) {
         newsDatabase = newsDatabase.filter(item => !item.title.toLowerCase().includes(title.toLowerCase()));
         
         if (newsDatabase.length < countBefore) {
-            alert(`✅ A matéria contendo "${title}" foi removida do ar pelo administrador (${MANAGER_EMAIL}).`);
+            alert(`✅ A matéria contendo "${title}" foi removida com sucesso do jornal pelo e-mail autorizado ${MANAGER_EMAIL}.`);
         } else {
-            alert('⚠️ Nenhuma matéria correspondente foi encontrada para ser tirada do ar.');
+            alert('⚠️ Nenhuma matéria com esse título foi encontrada para remoção.');
         }
     } else {
         const newArticle = {
@@ -206,16 +206,10 @@ function handleCMSPublish(event) {
             content: content
         };
         newsDatabase.unshift(newArticle);
-        alert(`🎉 Nova matéria publicada com sucesso vinculada a ${MANAGER_EMAIL}!`);
+        alert(`🎉 Nova matéria publicada com sucesso no ar com aprovação de ${MANAGER_EMAIL}!`);
     }
 
     renderNews(newsDatabase);
     closeCMSModal();
     document.getElementById('cms-form').reset();
-}
-
-function handleContact(event) {
-    event.preventDefault();
-    alert(`Sua mensagem foi transmitida diretamente para o e-mail gestor: ${MANAGER_EMAIL}`);
-    event.target.reset();
 }

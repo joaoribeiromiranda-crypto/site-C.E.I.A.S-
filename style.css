@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ESTILO JORNALÍSTICO CLÁSSICO E ELEGANTE (HARVARD BLUE)
+   ESTILO JORNALÍSTICO CLÁSSICO E ELEGANTE COM TEMA NOTURNO TOTAL
    ========================================================================== */
 
    :root {
@@ -10,21 +10,32 @@
     --light-bg: #F8FAF8;
     --card-bg: #FFFFFF;
     --text-color: #222222;
-    --muted-color: #666666;
+    --muted-color: #555555;
     --border-color: #DDE2E8;
     --gold-accent: #C5A059;
+    --alert-bg: #FFF9E6;
+    --alert-border: #FFE599;
+    --alert-text: #555555;
+    --input-bg: #FFFFFF;
     --base-font-size: 16px;
 }
 
-/* Tema Escuro Ativado no Menu de Engrenagem */
+/* TEMA NOTURNO COMPLETO (Ajustado para TODAS as cores do site) */
 body.dark-theme {
-    --harvard-navy: #1B4998;
-    --harvard-dark: #050B14;
-    --light-bg: #0D1520;
-    --card-bg: #162232;
-    --text-color: #E8EEF5;
-    --muted-color: #98A9BC;
-    --border-color: #24354A;
+    --harvard-navy: #152C4F;
+    --harvard-dark: #030812;
+    --royal-blue: #3A7BD5;
+    --sky-blue: #4A90E2;
+    --light-bg: #0A0F18;
+    --card-bg: #121A26;
+    --text-color: #E2E8F0;
+    --muted-color: #94A3B8;
+    --border-color: #1E293B;
+    --gold-accent: #D4AF37;
+    --alert-bg: #1A180E;
+    --alert-border: #3D3518;
+    --alert-text: #E2D2A2;
+    --input-bg: #1A2433;
 }
 
 * {
@@ -47,7 +58,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Animação Suave e Discreta de Fundo */
+/* Animação Suave de Fundo */
 .animated-bg {
     position: fixed;
     top: 0; left: 0;
@@ -87,7 +98,7 @@ body {
     font-family: Arial, sans-serif;
     font-size: 0.75rem;
     padding: 7px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .top-bar-content {
@@ -99,7 +110,7 @@ body {
 .newspaper-header {
     background-color: var(--card-bg);
     border-bottom: 3px solid var(--harvard-navy);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
 .header-main {
@@ -124,7 +135,7 @@ body {
 .main-title {
     font-size: 2.8rem;
     font-weight: bold;
-    color: var(--harvard-navy);
+    color: var(--royal-blue);
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -133,7 +144,7 @@ body {
     font-family: Arial, sans-serif;
     font-size: 0.85rem;
     font-weight: bold;
-    color: var(--royal-blue);
+    color: var(--text-color);
     margin-top: 4px;
 }
 
@@ -162,7 +173,7 @@ body {
 
 /* Barra de Navegação */
 .nav-bar {
-    background-color: var(--harvard-navy);
+    background-color: var(--harvard-dark);
 }
 
 .nav-content {
@@ -196,15 +207,17 @@ body {
 .search-box input {
     padding: 6px 14px;
     border-radius: 15px;
-    border: 1px solid #CCC;
+    border: 1px solid var(--border-color);
+    background: var(--input-bg);
+    color: var(--text-color);
     font-size: 0.85rem;
 }
 
 /* Banner de Alerta */
 .alert-container { margin-top: 20px; }
 .alert-banner {
-    background: #FFF9E6;
-    border: 1px solid #FFE599;
+    background: var(--alert-bg);
+    border: 1px solid var(--alert-border);
     border-left: 5px solid var(--gold-accent);
     padding: 8px 15px;
     display: flex;
@@ -224,7 +237,7 @@ body {
 marquee {
     font-family: Arial, sans-serif;
     font-size: 0.85rem;
-    color: #555;
+    color: var(--alert-text);
 }
 
 /* Estrutura Principal */
@@ -240,7 +253,7 @@ marquee {
 .hero-article {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-left: 6px solid var(--harvard-navy);
+    border-left: 6px solid var(--royal-blue);
     padding: 28px;
     margin-bottom: 30px;
 }
@@ -257,7 +270,7 @@ marquee {
 
 .hero-title {
     font-size: 1.8rem;
-    color: var(--harvard-navy);
+    color: var(--text-color);
     margin: 10px 0 8px 0;
 }
 
@@ -310,7 +323,7 @@ marquee {
 }
 
 .filter-btn.active, .filter-btn:hover {
-    background-color: var(--harvard-navy);
+    background-color: var(--royal-blue);
     color: #FFF;
 }
 
@@ -323,7 +336,7 @@ marquee {
 
 .news-card h3 {
     font-size: 1.3rem;
-    color: var(--harvard-navy);
+    color: var(--text-color);
     margin: 8px 0;
 }
 
@@ -337,7 +350,7 @@ marquee {
 
 .widget-title {
     font-size: 1.1rem;
-    color: var(--harvard-navy);
+    color: var(--royal-blue);
     border-bottom: 2px solid var(--royal-blue);
     padding-bottom: 8px;
     margin-bottom: 15px;
@@ -370,7 +383,7 @@ marquee {
 /* Seções e Páginas Internas */
 .section-title {
     font-size: 1.8rem;
-    color: var(--harvard-navy);
+    color: var(--royal-blue);
     border-bottom: 3px solid var(--gold-accent);
     padding-bottom: 8px;
     margin-bottom: 25px;
@@ -396,42 +409,83 @@ marquee {
     margin: 10px 0;
 }
 
-/* Aba Sobre e Formulário */
+/* ESTILOS DA ABA SOBRE E CARTOES DE CONTATO MANUAL */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
-.about-form-box {
+.about-info {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     padding: 25px;
 }
 
-.about-form-box form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
+.about-info h3 {
+    color: var(--royal-blue);
+    margin-bottom: 12px;
 }
 
-.about-form-box input, .about-form-box textarea {
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    background: var(--card-bg);
-    color: var(--text-color);
+.contact-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-cards-container h3 {
+    color: var(--royal-blue);
+}
+
+.contact-subtitle {
     font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    color: var(--muted-color);
+    margin-bottom: 5px;
+}
+
+.contact-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--royal-blue);
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.contact-icon {
+    font-size: 1.8rem;
+}
+
+.contact-details strong {
+    font-family: Arial, sans-serif;
+    font-size: 0.85rem;
+    color: var(--muted-color);
+    display: block;
+    margin-bottom: 3px;
+}
+
+.selectable-text {
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    user-select: all;
 }
 
 .submit-btn {
-    background: var(--harvard-navy);
+    background: var(--royal-blue);
     color: #FFF;
     border: none;
     padding: 12px;
     font-family: Arial, sans-serif;
     font-weight: bold;
     cursor: pointer;
+}
+
+.submit-btn:hover {
+    background: var(--harvard-navy);
 }
 
 /* Widget Engrenagem de Opções */
@@ -451,7 +505,7 @@ marquee {
     border-radius: 50%;
     font-size: 1.4rem;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     transition: transform 0.3s;
 }
 
@@ -463,7 +517,7 @@ marquee {
     left: 0;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     padding: 15px;
     width: 230px;
     border-radius: 6px;
@@ -474,7 +528,7 @@ marquee {
 
 .settings-menu h4 {
     font-size: 0.85rem;
-    color: var(--harvard-navy);
+    color: var(--royal-blue);
     margin-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 5px;
@@ -489,8 +543,8 @@ marquee {
 }
 
 .opt-btn {
-    background: var(--light-bg);
-    color: var(--harvard-navy);
+    background: var(--input-bg);
+    color: var(--text-color);
     border: 1px solid var(--border-color);
     padding: 6px 10px;
     font-weight: bold;
@@ -504,7 +558,7 @@ marquee {
 .modal-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 33, 71, 0.7);
+    background: rgba(3, 8, 18, 0.8);
     display: flex; justify-content: center; align-items: center;
     z-index: 1000;
 }
@@ -514,6 +568,7 @@ marquee {
 .modal-card {
     background: var(--card-bg);
     color: var(--text-color);
+    border: 1px solid var(--border-color);
     width: 90%; max-width: 600px;
     padding: 30px; position: relative;
     max-height: 90vh; overflow-y: auto;
@@ -528,13 +583,12 @@ marquee {
 .cms-subtitle { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--muted-color); margin-bottom: 15px; }
 .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; font-family: Arial, sans-serif; font-size: 0.85rem; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.form-group input, .form-group select, .form-group textarea { padding: 8px; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-color); }
-.gold-submit { background: var(--royal-blue); }
+.form-group input, .form-group select, .form-group textarea { padding: 8px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-color); }
 
 /* Rodapé */
 .newspaper-footer {
     background: var(--harvard-dark);
-    color: #AAA;
+    color: var(--muted-color);
     padding: 30px 0;
     margin-top: 50px;
     border-top: 4px solid var(--harvard-navy);

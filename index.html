@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Fundo Animado Suave -->
+    <!-- Fundo Animado Discreto Noturno/Diurno -->
     <div class="animated-bg">
         <div class="bg-shape shape-1"></div>
         <div class="bg-shape shape-2"></div>
@@ -202,40 +202,57 @@
             </div>
         </section>
 
-        <!-- ABA 5: SOBRE E CONTATO -->
+        <!-- ABA 5: SOBRE E CONTATO (SEM FORMULÁRIO - APENAS INFORMAÇÕES MANUAIS) -->
         <section id="tab-sobre" class="tab-pane">
-            <h2 class="section-title">Sobre a Instituição & Contato Directo</h2>
+            <h2 class="section-title">Sobre a Instituição & Canais de Contato</h2>
+            
             <div class="about-grid">
                 <div class="about-info">
                     <h3>Nossa História e Patrona</h3>
                     <p>A Serva de Deus Irmã Ambrósia Sabatovich dedicou sua vida ao amparo humano e educacional. O colégio mantém viva sua memória, promovendo ensino de qualidade na comunidade rural da Colônia Marcelino.</p>
-                    <div class="contact-details">
-                        <p>📧 <strong>E-mail Gestor:</strong> gomes.souza17@escola.pr.gov.br</p>
-                        <p>📍 <strong>Endereço:</strong> Estrada Ver. Domingos Benevenuto Moletta, 17173 — São José dos Pinhais - PR</p>
-                    </div>
                 </div>
-                <div class="about-form-box">
-                    <h3>Fale com a Redação ou Coordenação</h3>
-                    <form onsubmit="handleContact(event)">
-                        <input type="text" placeholder="Seu Nome Completo" required>
-                        <input type="email" placeholder="Seu E-mail" required>
-                        <textarea placeholder="Escreva sua mensagem aqui..." rows="4" required></textarea>
-                        <button type="submit" class="submit-btn">Enviar Mensagem</button>
-                    </form>
+
+                <div class="contact-cards-container">
+                    <h3>📞 Canais Oficiais para Contato Manual</h3>
+                    <p class="contact-subtitle">Entre em contato diretamente utilizando nossos dados abaixo:</p>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <strong>E-mail do Gestor / Direção:</strong>
+                            <p class="selectable-text">gomes.souza17@escola.pr.gov.br</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-details">
+                            <strong>Telefone / WhatsApp Escolar:</strong>
+                            <p class="selectable-text">(41) 3385-1234 / (41) 99999-8888</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <strong>Endereço da Instituição:</strong>
+                            <p class="selectable-text">Estrada Ver. Domingos Benevenuto Moletta, 17173 — Colônia Marcelino, São José dos Pinhais - PR</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
     </main>
 
-    <!-- Botão de Engrenagem (Menu Flutuante de Opções) -->
+    <!-- Botão de Engrenagem (Menu Flutuante) -->
     <div class="settings-widget">
         <button id="gear-btn" class="gear-btn" title="Configurações e Acessibilidade">⚙️</button>
         <div id="settings-menu" class="settings-menu hidden">
             <h4>⚙️ Personalização</h4>
             <div class="setting-row">
                 <span>Aparência:</span>
-                <button id="toggle-theme-btn" class="opt-btn">🌓 Alternar Tema</button>
+                <button id="toggle-theme-btn" class="opt-btn">🌓 Modo Noturno</button>
             </div>
             <div class="setting-row">
                 <span>Tamanho da Fonte:</span>
@@ -256,7 +273,7 @@
         </div>
     </div>
 
-    <!-- Modal do Painel CMS (Publicar / Remanejamento de Notícias) -->
+    <!-- Modal do Painel CMS -->
     <div id="cms-modal" class="modal-overlay hidden">
         <div class="modal-card cms-card">
             <button class="close-modal-btn" onclick="closeCMSModal()">✕</button>
@@ -265,7 +282,7 @@
 
             <form id="cms-form" onsubmit="handleCMSPublish(event)">
                 <div class="form-group">
-                    <label>E-mail do Administrador:</label>
+                    <label>E-mail do Administrador Autorizador:</label>
                     <input type="email" id="cms-email" value="gomes.souza17@escola.pr.gov.br" readonly required>
                 </div>
                 <div class="form-group">
