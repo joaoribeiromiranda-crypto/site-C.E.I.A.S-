@@ -1,13 +1,14 @@
-// E-mail Gestor Responsável
-const MANAGER_EMAIL = "gomes.souza17@escola.pr.gov.br";
+// Credenciais Únicas Autorizadas de Administração
+const ADMIN_EMAIL = "gomes.souza17@escola.pr.gov.br";
+const ADMIN_PASS = "ceias2026";
 
-// Banco de dados inicial em memória
-let newsDatabase = [
+// Notícias Iniciais
+const defaultNews = [
     {
         id: 'feira-campo',
         title: 'Feira do Conhecimento do Campo Celebra Sustentabilidade na Colônia Marcelino',
         category: 'projetos',
-        author: `Gestão (${MANAGER_EMAIL})`,
+        author: `Gestão (${ADMIN_EMAIL})`,
         date: '24/09/2026',
         excerpt: 'Estudantes do C.E.I.A.S. apresentaram maquetes, hortas comunitárias e inovações em agricultura familiar.',
         content: 'A feira reuniu a comunidade escolar para prestigiar projetos ecológicos desenvolvidos no Ensino Médio do Campo.'
@@ -23,6 +24,9 @@ let newsDatabase = [
     }
 ];
 
+// Carrega Notícias do LocalStorage ou usa o Padrão
+let newsDatabase = JSON.parse(localStorage.getItem('ceias_news_db')) || defaultNews;
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // 1. Data Atual Formatada
@@ -32,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         dateEl.innerText = now.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     }
 
-    // 2. Troca de Abas
+    // 2. Navegação entre Abas
     const navButtons = document.querySelectorAll('.nav-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
@@ -76,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Engrenagem: Modo Noturno e Acessibilidade de Fonte
+    // 6. Engrenagem: Modo Noturno e Fonte
     const gearBtn = document.getElementById('gear-btn');
     const settingsMenu = document.getElementById('settings-menu');
     const toggleThemeBtn = document.getElementById('toggle-theme-btn');
@@ -131,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Renderizar Lista de Notícias
+// Renderizar Lista de Notícias no HTML
 function renderNews(list) {
     const container = document.getElementById('news-container');
     if (!container) return;
@@ -152,7 +156,7 @@ function renderNews(list) {
     `).join('');
 }
 
-// Modal Leitura
+// Modal de Leitura
 function openArticleModal(articleId) {
     const article = newsDatabase.find(n => n.id === articleId);
     if (!article) return;
@@ -176,37 +180,52 @@ function closeCMSModal() {
     document.getElementById('cms-modal').classList.add('hidden');
 }
 
-// Gestão de Publicação e Remoção (CMS)
+// Gestão de Publicação e Remoção Permanente (CMS)
 function handleCMSPublish(event) {
     event.preventDefault();
 
-    const title = document.getElementById('cms-title').value;
+    const inputEmail = document.getElementById('cms-email').value.trim();
+    const inputPass = document.getElementById('cms-password').value.trim();
+    const title = document.getElementById('cms-title').value.trim();
     const category = document.getElementById('cms-category').value;
     const action = document.getElementById('cms-action').value;
-    const excerpt = document.getElementById('cms-excerpt').value;
-    const content = document.getElementById('cms-content').value;
+    const excerpt = document.getElementById('cms-excerpt').value.trim();
+    const content = document.getElementById('cms-content').value.trim();
+
+    if (inputEmail !== ADMIN_EMAIL || inputPass !== ADMIN_PASS) {
+        alert("❌ ACESSO NEGADO: E-mail ou Senha incorretos!");
+        return;
+    }
 
     if (action === 'remove') {
         const countBefore = newsDatabase.length;
         newsDatabase = newsDatabase.filter(item => !item.title.toLowerCase().includes(title.toLowerCase()));
         
         if (newsDatabase.length < countBefore) {
-            alert(`✅ A matéria contendo "${title}" foi removida com sucesso do jornal pelo e-mail autorizado ${MANAGER_EMAIL}.`);
+            localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
+            alert(`✅ Matéria contendo "${title}" foi PERMANENTEMENTE removida.`);
         } else {
-            alert('⚠️ Nenhuma matéria com esse título foi encontrada para remoção.');
+            alert('⚠️ Nenhuma matéria correspondente foi encontrada para remoção.');
         }
     } else {
+        if (!excerpt || !content) {
+            alert("⚠️ Preencha o Resumo e o Texto Completo para publicar.");
+            return;
+        }
+
         const newArticle = {
             id: 'news-' + Date.now(),
             title: title,
             category: category,
-            author: `Gestão (${MANAGER_EMAIL})`,
+            author: `Gestão (${ADMIN_EMAIL})`,
             date: new Date().toLocaleDateString('pt-BR'),
             excerpt: excerpt,
             content: content
         };
+
         newsDatabase.unshift(newArticle);
-        alert(`🎉 Nova matéria publicada com sucesso no ar com aprovação de ${MANAGER_EMAIL}!`);
+        localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
+        alert(`🎉 Nova matéria PERMANENTEMENTE publicada!`);
     }
 
     renderNews(newsDatabase);

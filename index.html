@@ -3,68 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gazeta Sabatovich | C.E.I.A.S.</title>
+    <title>Gazeta Sabatovich | C.E.I.A.S. - Portal Informativo Escolar</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Fundo Animado Discreto Noturno/Diurno -->
+    <!-- Fundo Animado -->
     <div class="animated-bg">
         <div class="bg-shape shape-1"></div>
         <div class="bg-shape shape-2"></div>
         <div class="bg-shape shape-3"></div>
     </div>
 
-    <!-- Faixa de Topo (Informações e Data) -->
+    <!-- Faixa de Topo -->
     <div class="top-bar">
         <div class="container top-bar-content">
             <span class="location-tag">📍 SÃO JOSÉ DOS PINHAIS - PR • COLÔNIA MARCELINO</span>
             <span id="current-date" class="date-tag">Carregando data...</span>
-            <span class="email-tag">E-mail Gestor: <strong>gomes.souza17@escola.pr.gov.br</strong></span>
+            <span class="email-tag">E-mail Gestor Autorizado: <strong>gomes.souza17@escola.pr.gov.br</strong></span>
         </div>
     </div>
 
-    <!-- Cabeçalho Clássico de Jornal -->
+    <!-- Cabeçalho Principal -->
     <header class="newspaper-header">
         <div class="container header-main">
-            <div class="logo-box">
-                <img src="file:///home/escola/Downloads/logo%20colegio.jpg" alt="Logo C.E.I.A.S." class="school-logo">
-            </div>
-            
             <div class="title-box">
                 <h1 class="main-title">GAZETA SABATOVICH</h1>
-                <p class="school-name">COLÉGIO ESTADUAL DO CAMPO IRMÃ AMBRÓSIA SABATOVICH</p>
-                <p class="tagline">"Educando para a Comunidade • Tradição e Futuro no Campo"</p>
+                <p class="school-name">COLÉGIO ESTADUAL DO CAMPO IRMÃ AMBRÓSIA SABATOVICH (C.E.I.A.S.)</p>
+                <p class="tagline">"Educando para a Comunidade • Nível de Socioeconômico: Médio-Alto (INEP)"</p>
             </div>
 
             <div class="cms-action-box">
-                <button id="open-cms-btn" class="cms-btn">🔑 Publicar / Gestão CMS</button>
+                <button id="open-cms-btn" class="cms-btn">🔑 ÁREA RESTRITA (CMS)</button>
             </div>
         </div>
 
-        <!-- Menu de Navegação -->
+        <!-- Menu de Navegação por Abas -->
         <nav class="nav-bar">
             <div class="container nav-content">
                 <div class="nav-links">
-                    <button class="nav-btn active" data-tab="home">Início</button>
-                    <button class="nav-btn" data-tab="ideb">IDEB</button>
-                    <button class="nav-btn" data-tab="aprendizado">Aprendizado (QEdu)</button>
-                    <button class="nav-btn" data-tab="censo">Censo Escolar</button>
+                    <button class="nav-btn active" data-tab="home">Início & Notícias</button>
+                    <button class="nav-btn" data-tab="ideb">IDEB & SAEB</button>
+                    <button class="nav-btn" data-tab="aprendizado">Aprendizado</button>
+                    <button class="nav-btn" data-tab="rendimento">Rendimento & Distorção</button>
+                    <button class="nav-btn" data-tab="censo">Infraestrutura & Censo</button>
+                    <button class="nav-btn" data-tab="questionario">Perfil & Saeb</button>
                     <button class="nav-btn" data-tab="sobre">Sobre & Contato</button>
                 </div>
                 <div class="search-box">
-                    <input type="text" id="search-input" placeholder="Buscar no jornal...">
+                    <input type="text" id="search-input" placeholder="Buscar no site...">
                 </div>
             </div>
         </nav>
     </header>
 
-    <!-- Mural de Comunicados Rápidos -->
+    <!-- Banner de Alerta / Comunicados Rápidos -->
     <div class="container alert-container">
         <div class="alert-banner">
             <span class="alert-label">AVISOS RÁPIDOS</span>
             <marquee behavior="scroll" direction="left" id="urgent-notice">
-                📢 Gestão de Notícias: gomes.souza17@escola.pr.gov.br | Reunião de Pais e Mestres agendada para sexta-feira às 18h30 | Matrículas abertas!
+                📢 Destaque QEdu: IDEB Anos Finais alcança nota 5,8 (Aprendizado 5,88 x Fluxo 0,99) | Média ENEM: 501,18 pontos | Taxa de Aprovação Anos Finais em 99,0%!
             </marquee>
         </div>
     </div>
@@ -72,24 +70,20 @@
     <!-- Conteúdo Principal -->
     <main class="container main-layout">
 
-        <!-- ABA 1: HOME (JORNAL) -->
+        <!-- ABA 1: INÍCIO E NOTÍCIAS -->
         <section id="tab-home" class="tab-pane active">
             
-            <!-- Destaque Principal (Hero) -->
             <div class="hero-article">
                 <div class="hero-content">
-                    <span class="category-badge">PROJETOS E AULAS</span>
-                    <h2 class="hero-title">Feira do Conhecimento do Campo Celebra Sustentabilidade na Colônia Marcelino</h2>
-                    <p class="article-meta">Por: Redação do Grêmio • Responsável: gomes.souza17@escola.pr.gov.br</p>
-                    <p class="hero-excerpt">Estudantes do C.E.I.A.S. apresentaram maquetes, hortas comunitárias e inovações em agricultura familiar, fortalecendo os laços socioculturais com a comunidade rural local.</p>
+                    <span class="category-badge">DESTAQUE ACADÊMICO</span>
+                    <h2 class="hero-title">C.E.I.A.S. Alcança Nota 5,8 no IDEB dos Anos Finais</h2>
+                    <p class="article-meta">Fonte: QEdu / INEP • Gestão: gomes.souza17@escola.pr.gov.br</p>
+                    <p class="hero-excerpt">Com taxa de aprovação de 99,0% nos Anos Finais e nota padronizada SAEB de 5,88, o colégio fortalece sua posição de destaque educacional no espaço rural de São José dos Pinhais.</p>
                     <button class="read-more-btn" onclick="openArticleModal('feira-campo')">Ler Matéria Completa →</button>
                 </div>
             </div>
 
-            <!-- Grade do Conteúdo (Feed + Lateral) -->
             <div class="content-grid">
-                
-                <!-- Coluna Principal do Feed -->
                 <div class="news-feed-column">
                     <div class="filter-bar">
                         <span class="filter-label">Filtrar Categoria:</span>
@@ -101,108 +95,312 @@
                     </div>
 
                     <div id="news-container" class="news-list">
-                        <!-- Notícias inseridas via JS -->
+                        <!-- Notícias via JS -->
                     </div>
                 </div>
 
-                <!-- Barra Lateral (Sidebar) -->
+                <!-- Sidebar Informativa -->
                 <aside class="sidebar-column">
                     <div class="sidebar-card">
-                        <h3 class="widget-title">📅 Agenda de Eventos</h3>
+                        <h3 class="widget-title">📌 Indicadores-Chave</h3>
+                        <div class="qedu-quick-item">
+                            <span>IDEB Anos Finais</span>
+                            <strong>5,8 / 10</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Média Proficiência SAEB</span>
+                            <strong>5,88</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Indicador de Fluxo</span>
+                            <strong>0,99</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Média ENEM</span>
+                            <strong>501,18 pts</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Aprovação Anos Finais</span>
+                            <strong>99,0%</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Aprovação Ensino Médio</span>
+                            <strong>92,4%</strong>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3 class="widget-title">📅 Agenda Escolar</h3>
                         <ul class="event-list">
                             <li>
                                 <div class="event-date">28 SET</div>
                                 <div class="event-details">
-                                    <strong>Simulado Prova Paraná</strong>
-                                    <p>Turmas do 9º Ano e 3º Médio</p>
+                                    <strong>Simulado Prova Paraná / SAEB</strong>
+                                    <p>Turmas do 9º Ano e 3º EM</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="event-date">05 OUT</div>
                                 <div class="event-details">
-                                    <strong>Mostra Cultural Local</strong>
-                                    <p>Apresentações folclóricas da Colônia</p>
+                                    <strong>Mostra Cultural da Colônia</strong>
+                                    <p>Apresentações no auditório</p>
                                 </div>
                             </li>
                         </ul>
                     </div>
-
-                    <div class="sidebar-card qedu-widget">
-                        <h3 class="widget-title">📊 Dados Oficiais (QEdu)</h3>
-                        <div class="qedu-quick-item">
-                            <span>Código INEP</span>
-                            <strong>41369270</strong>
-                        </div>
-                        <div class="qedu-quick-item">
-                            <span>IDEB Médio</span>
-                            <strong>5.0</strong>
-                        </div>
-                        <div class="qedu-quick-item">
-                            <span>Total de Alunos</span>
-                            <strong>474</strong>
-                        </div>
-                    </div>
                 </aside>
-
             </div>
         </section>
 
-        <!-- ABA 2: IDEB -->
+        <!-- ABA 2: IDEB & SAEB -->
         <section id="tab-ideb" class="tab-pane">
             <h2 class="section-title">Índice de Desenvolvimento da Educação Básica (IDEB)</h2>
+            
+            <div class="metrics-summary-banner">
+                <div class="summary-box">
+                    <span>Aprendizado (Nota Saeb)</span>
+                    <strong>5,88</strong>
+                </div>
+                <div class="operator">×</div>
+                <div class="summary-box">
+                    <span>Fluxo Escolar (Aprovação)</span>
+                    <strong>0,99</strong>
+                </div>
+                <div class="operator">=</div>
+                <div class="summary-box highlight-box">
+                    <span>IDEB Final</span>
+                    <strong>5,8</strong>
+                </div>
+            </div>
+
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <h3>IDEB Ensino Médio</h3>
-                    <div class="big-number">5.0</div>
-                    <p>Meta em constante evolução por meio de práticas pedagógicas integradas à realidade do campo.</p>
+                    <h3>Proficiência em Português</h3>
+                    <div class="big-number">271,5</div>
+                    <p>Média padronizada obtida pelos estudantes no exame SAEB.</p>
                 </div>
                 <div class="metric-card">
-                    <h3>Metodologia de Avaliação</h3>
-                    <p>Foco na redução do abandono escolar, melhoria no fluxo e alcance dos índices do SAEB.</p>
+                    <h3>Proficiência em Matemática</h3>
+                    <div class="big-number">281,28</div>
+                    <p>Média padronizada obtida pelos estudantes no exame SAEB.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Classificação NSE</h3>
+                    <div class="big-number-sm">Médio-Alto</div>
+                    <p>Nível Socioeconômico oficial classificado pelo INEP.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ABA 3: APRENDIZADO -->
+        <!-- ABA 3: APRENDIZADO ADEQUADO -->
         <section id="tab-aprendizado" class="tab-pane">
-            <h2 class="section-title">Dados de Aprendizado e Desempenho (SAEB)</h2>
+            <h2 class="section-title">Evolução do Aprendizado Adequado (SAEB)</h2>
+            
+            <div class="data-group-title">9º Ano - Ensino Fundamental</div>
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <h3>Língua Portuguesa (9º Ano)</h3>
+                    <h3>Língua Portuguesa (2023)</h3>
                     <div class="big-number">32%</div>
-                    <p>Nível adequado em leitura, interpretação e coesão textual.</p>
+                    <p>Alunos no nível adequado (2019: 36% | 2021: 38%).</p>
                 </div>
                 <div class="metric-card">
-                    <h3>Matemática (9º Ano)</h3>
+                    <h3>Matemática (2023)</h3>
                     <div class="big-number">26%</div>
-                    <p>Proficiência adequada em raciocínio lógico e resolução de problemas.</p>
-                </div>
-                <div class="metric-card">
-                    <h3>Média ENEM</h3>
-                    <div class="big-number">501,18</div>
-                    <p>Desempenho geral alcançado pelos estudantes do 3º ano do Ensino Médio.</p>
+                    <p>Alunos no nível adequado (2019: 28% | 2021: 25%).</p>
                 </div>
             </div>
-        </section>
 
-        <!-- ABA 4: CENSO ESCOLAR -->
-        <section id="tab-censo" class="tab-pane">
-            <h2 class="section-title">Censo Escolar e Estrutura (INEP: 41369270)</h2>
+            <div class="data-group-title">3º Ano - Ensino Médio</div>
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <h3>Matrículas Ativas</h3>
-                    <div class="big-number">474</div>
-                    <p>Atendimento regular para Ensino Fundamental II e Ensino Médio do Campo.</p>
+                    <h3>Língua Portuguesa</h3>
+                    <div class="big-number">40%</div>
+                    <p>Alunos demonstrando nível de aprendizado adequado.</p>
                 </div>
                 <div class="metric-card">
-                    <h3>Corpo Docente</h3>
-                    <div class="big-number">19</div>
-                    <p>Professores dedicados ao desenvolvimento educacional e social da Colônia Marcelino.</p>
+                    <h3>Matemática</h3>
+                    <div class="big-number red-text">4%</div>
+                    <p>Alunos demonstrando nível de aprendizado adequado (Atenção Pedagógica).</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Média Geral ENEM</h3>
+                    <div class="big-number">501,18</div>
+                    <p>Pontuação média oficial dos estudantes concluintes.</p>
+                </div>
+            </div>
+
+            <div class="data-group-title">Distribuição por Níveis de Proficiência (9º Ano)</div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Nível de Desempenho</th>
+                            <th>2019</th>
+                            <th>2021</th>
+                            <th>2023</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Avançado</td><td>4% (2 alunos)</td><td>2%</td><td>3%</td></tr>
+                        <tr><td>Proficiente</td><td>24% (14 alunos)</td><td>23%</td><td>23%</td></tr>
+                        <tr><td>Básico</td><td>54% (32 alunos)</td><td>58%</td><td>55%</td></tr>
+                        <tr><td>Insuficiente</td><td>18% (11 alunos)</td><td>17%</td><td>18%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ABA 4: RENDIMENTO & DISTORÇÃO -->
+        <section id="tab-rendimento" class="tab-pane">
+            <h2 class="section-title">Taxas de Rendimento Escolar & Distorção Idade-Série</h2>
+            
+            <div class="data-group-title">Taxas Globais por Etapa Escolar</div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Etapa de Ensino</th>
+                            <th>Aprovação</th>
+                            <th>Reprovação</th>
+                            <th>Abandono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Anos Finais (Fundamental II)</strong></td><td class="green-cell">99,0%</td><td>1,0%</td><td class="green-cell">0,0%</td></tr>
+                        <tr><td><strong>Ensino Médio (Geral)</strong></td><td>92,4%</td><td>7,6%</td><td class="green-cell">0,0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="data-group-title">Detalhamento Ano a Ano (Ensino Médio)</div>
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Série</th>
+                            <th>Aprovação</th>
+                            <th>Reprovação</th>
+                            <th>Abandono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>1º Ano do Ensino Médio</strong></td><td>88,1%</td><td class="red-cell">11,9%</td><td>0,0%</td></tr>
+                        <tr><td><strong>2º Ano do Ensino Médio</strong></td><td class="green-cell">98,3%</td><td>1,7%</td><td>0,0%</td></tr>
+                        <tr><td><strong>3º Ano do Ensino Médio</strong></td><td>90,2%</td><td>9,8%</td><td>0,0%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="data-group-title">Indicador de Distorção Idade-Série (Atraso de 2 anos ou mais)</div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Média Geral Ensino Médio</h3>
+                    <div class="big-number">7,7%</div>
+                    <p>A cada 100 alunos, cerca de 8 possuem atraso escolar igual ou superior a 2 anos.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>1º e 2º Ano do EM</h3>
+                    <div class="big-number">6,6%</div>
+                    <p>Percentual de distorção registrado no 1º e 2º ano.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>3º Ano do EM</h3>
+                    <div class="big-number">8,0%</div>
+                    <p>Percentual de distorção registrado no 3º ano do Ensino Médio.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ABA 5: SOBRE E CONTATO (SEM FORMULÁRIO - APENAS INFORMAÇÕES MANUAIS) -->
+        <!-- ABA 5: INFRAESTRUTURA & CENSO -->
+        <section id="tab-censo" class="tab-pane">
+            <h2 class="section-title">Infraestrutura Escolar & Dados do Censo (INEP: 41369270)</h2>
+            
+            <div class="metrics-grid mb-30">
+                <div class="metric-card">
+                    <h3>Total de Matrículas</h3>
+                    <div class="big-number">474</div>
+                    <p>305 nos Anos Finais | 169 no Ensino Médio</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Professores Ativos</h3>
+                    <div class="big-number">19</div>
+                    <p>Corpo docente registrado na unidade de ensino.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Localização</h3>
+                    <div class="big-number-sm">Zona Rural</div>
+                    <p>Colônia Marcelino - São José dos Pinhais / PR</p>
+                </div>
+            </div>
+
+            <div class="data-group-title">Instalações e Serviços Confirmados no Censo</div>
+            <div class="infra-grid">
+                <div class="infra-box status-ok">✔️ Acessibilidade (Rampas e Banheiros)</div>
+                <div class="infra-box status-ok">✔️ Alimentação Escolar Gratuita</div>
+                <div class="infra-box status-ok">✔️ Água Potável Encanada</div>
+                <div class="infra-box status-ok">✔️ Biblioteca e Sala de Leitura</div>
+                <div class="infra-box status-ok">✔️ Cozinha e Refeitório</div>
+                <div class="infra-box status-ok">✔️ Quadra de Esportes Coberta</div>
+                <div class="infra-box status-ok">✔️ Laboratório de Informática</div>
+                <div class="infra-box status-ok">✔️ Sala de Diretoria e Sala de Professores</div>
+                <div class="infra-box status-ok">✔️ Internet e Computadores</div>
+                <div class="infra-box status-ok">✔️ Esgoto Sanitário Via Fossa</div>
+                <div class="infra-box status-ok">✔️ Lixo Coletado Periódico</div>
+                <div class="infra-box status-ok">✔️ Energia Elétrica da Rede Pública</div>
+            </div>
+
+            <div class="data-group-title">Disciplinas e Áreas do Conhecimento Ofertadas</div>
+            <div class="disciplines-grid">
+                <span>Língua Portuguesa</span>
+                <span>Matemática</span>
+                <span>Língua Estrangeira (Inglês)</span>
+                <span>Ciências</span>
+                <span>Física</span>
+                <span>Geografia</span>
+                <span>Ensino Religioso</span>
+                <span>Artes (Visual, Dança, Música, Teatro)</span>
+                <span>Educação Física</span>
+            </div>
+        </section>
+
+        <!-- ABA 6: PERFIL & QUESTIONÁRIO SAEB -->
+        <section id="tab-questionario" class="tab-pane">
+            <h2 class="section-title">Perfil dos Estudantes e Questionários Contextuais SAEB</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Alunos do 9º Ano</h3>
+                    <div class="big-number">59</div>
+                    <p>Alunos responderam ao questionário contextual de 49 perguntas.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Alunos do 3º Ano EM</h3>
+                    <div class="big-number">48</div>
+                    <p>Alunos responderam ao questionário contextual de 50 perguntas.</p>
+                </div>
+            </div>
+
+            <div class="data-group-title">Destaques Contextuais e Hábitos dos Estudantes</div>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <h3>Expectativa de Ensino Superior</h3>
+                    <div class="big-number">13%</div>
+                    <p>Alunos que pretendem cursar faculdade/universidade.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Interesse por Notícias</h3>
+                    <div class="big-number">35%</div>
+                    <p>Alunos com hábito frequente de ler e conversar sobre o que acontece no mundo.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>Leitura Extracurricular</h3>
+                    <div class="big-number">24%</div>
+                    <p>Alunos que leem livros não exigidos pela escola.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 7: SOBRE E CONTATO -->
         <section id="tab-sobre" class="tab-pane">
             <h2 class="section-title">Sobre a Instituição & Canais de Contato</h2>
             
@@ -214,12 +412,12 @@
 
                 <div class="contact-cards-container">
                     <h3>📞 Canais Oficiais para Contato Manual</h3>
-                    <p class="contact-subtitle">Entre em contato diretamente utilizando nossos dados abaixo:</p>
+                    <p class="contact-subtitle">Utilize os dados abaixo para falar diretamente com a instituição:</p>
 
                     <div class="contact-card">
                         <div class="contact-icon">📧</div>
                         <div class="contact-details">
-                            <strong>E-mail do Gestor / Direção:</strong>
+                            <strong>E-mail Gestor Autorizado:</strong>
                             <p class="selectable-text">gomes.souza17@escola.pr.gov.br</p>
                         </div>
                     </div>
@@ -236,7 +434,7 @@
                         <div class="contact-icon">📍</div>
                         <div class="contact-details">
                             <strong>Endereço da Instituição:</strong>
-                            <p class="selectable-text">Estrada Ver. Domingos Benevenuto Moletta, 17173 — Colônia Marcelino, São José dos Pinhais - PR</p>
+                            <p class="selectable-text">Estrada Ver. Domingos Benevenuto Moletta, 17173 — Colônia Marcelino, São José dos Pinhais - PR (CEP 83024-899)</p>
                         </div>
                     </div>
                 </div>
@@ -245,7 +443,7 @@
 
     </main>
 
-    <!-- Botão de Engrenagem (Menu Flutuante) -->
+    <!-- Engrenagem de Opções -->
     <div class="settings-widget">
         <button id="gear-btn" class="gear-btn" title="Configurações e Acessibilidade">⚙️</button>
         <div id="settings-menu" class="settings-menu hidden">
@@ -265,7 +463,7 @@
         </div>
     </div>
 
-    <!-- Modal de Leitura da Matéria -->
+    <!-- Modal Leitura de Notícia -->
     <div id="article-modal" class="modal-overlay hidden">
         <div class="modal-card">
             <button class="close-modal-btn" onclick="closeArticleModal()">✕</button>
@@ -273,22 +471,32 @@
         </div>
     </div>
 
-    <!-- Modal do Painel CMS -->
+    <!-- Modal CMS -->
     <div id="cms-modal" class="modal-overlay hidden">
         <div class="modal-card cms-card">
             <button class="close-modal-btn" onclick="closeCMSModal()">✕</button>
             <h2>🔑 Painel de Gestão e Publicação (CMS)</h2>
-            <p class="cms-subtitle">E-mail Gestor Responsável: <strong>gomes.souza17@escola.pr.gov.br</strong></p>
+            <p class="cms-subtitle">Acesso restrito exclusivo do administrador autorizado.</p>
 
             <form id="cms-form" onsubmit="handleCMSPublish(event)">
-                <div class="form-group">
-                    <label>E-mail do Administrador Autorizador:</label>
-                    <input type="email" id="cms-email" value="gomes.souza17@escola.pr.gov.br" readonly required>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>E-mail do Administrador:</label>
+                        <input type="email" id="cms-email" placeholder="gomes.souza17@escola.pr.gov.br" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha de Acesso:</label>
+                        <input type="password" id="cms-password" placeholder="Digite sua senha..." required>
+                    </div>
                 </div>
+
+                <hr style="margin: 10px 0 15px 0; border: 0; border-top: 1px solid var(--border-color);">
+
                 <div class="form-group">
                     <label>Título da Notícia ou Evento:</label>
-                    <input type="text" id="cms-title" placeholder="Digite o título..." required>
+                    <input type="text" id="cms-title" placeholder="Digite o título exato..." required>
                 </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>Categoria:</label>
@@ -307,25 +515,28 @@
                         </select>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label>Resumo Curto (Feed):</label>
-                    <input type="text" id="cms-excerpt" placeholder="Breve resumo..." required>
+                    <input type="text" id="cms-excerpt" placeholder="Breve resumo que aparecerá no feed...">
                 </div>
+
                 <div class="form-group">
                     <label>Texto Completo:</label>
-                    <textarea id="cms-content" rows="4" placeholder="Escreva o texto completo da matéria..." required></textarea>
+                    <textarea id="cms-content" rows="4" placeholder="Escreva o texto completo da matéria..."></textarea>
                 </div>
-                <button type="submit" class="submit-btn gold-submit">Confirmar Operação no Jornal</button>
+
+                <button type="submit" class="submit-btn gold-submit">Confirmar Alteração Permanente</button>
             </form>
         </div>
     </div>
 
-    <!-- Rodapé Tradicional -->
+    <!-- Rodapé -->
     <footer class="newspaper-footer">
         <div class="container footer-content">
             <div class="footer-left">
-                <p>&copy; 2026 Gazeta Sabatovich — C.E.I.A.S.</p>
-                <p>Contato Gestor: <strong>gomes.souza17@escola.pr.gov.br</strong></p>
+                <p>&copy; 2026 Gazeta Sabatovich — C.E.I.A.S. • Fonte de dados educacionais: INEP / QEdu</p>
+                <p>Contato Gestor Exclusivo: <strong>gomes.souza17@escola.pr.gov.br</strong></p>
             </div>
             <div class="footer-right">
                 <p>Desenvolvido por alunos do 2ºB:</p>
