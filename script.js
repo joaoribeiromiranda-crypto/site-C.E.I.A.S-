@@ -1,42 +1,47 @@
-// Credenciais Únicas Autorizadas de Administração
-const ADMIN_EMAIL = "gomes.souza17@escola.pr.gov.br";
+// Credenciais Únicas de Gestão
+const ADMIN_EMAIL = "sjpambrosiasabatovich@seed.pr.gov.br";
 const ADMIN_PASS = "ceias2026";
 
-// Notícias Iniciais
+// Notícias Iniciais Padrão
 const defaultNews = [
     {
-        id: 'feira-campo',
-        title: 'Feira do Conhecimento do Campo Celebra Sustentabilidade na Colônia Marcelino',
-        category: 'projetos',
+        id: 'destaque-ideb',
+        title: 'C.E.I.A.S. Alcança Nota 5,8 no IDEB dos Anos Finais',
+        category: 'institucional',
         author: `Gestão (${ADMIN_EMAIL})`,
-        date: '24/09/2026',
-        excerpt: 'Estudantes do C.E.I.A.S. apresentaram maquetes, hortas comunitárias e inovações em agricultura familiar.',
-        content: 'A feira reuniu a comunidade escolar para prestigiar projetos ecológicos desenvolvidos no Ensino Médio do Campo.'
+        date: '10/10/2026',
+        excerpt: 'Combinação de excelente índice de aprovação (99,0%) e nota média SAEB de 5,88 fortalece o colégio como referência no espaço rural.',
+        content: 'O Colégio Estadual do Campo Irmã Ambrósia Sabatovich celebrou o excelente resultado no IDEB. O indicador é composto pela taxa de aprovação de 99,0% combinada com médias expressivas no exame Saeb: 271,5 em Língua Portuguesa e 281,3 em Matemática.'
     },
     {
-        id: 'intercolegial-volei',
-        title: 'Equipe de Vôlei do C.E.I.A.S. Garante Vaga no Torneio Regional',
-        category: 'esportes',
-        author: 'Prof. Carlos (Educação Física)',
-        date: '22/09/2026',
-        excerpt: 'Após vitória expressiva na fase municipal em São José dos Pinhais, time avança com destaque.',
-        content: 'Os treinos contínuos no ginásio do colégio levaram os atletas à fase regional do Paraná.'
+        id: 'feira-campo',
+        title: 'Feira do Conhecimento Rural Celebra Sustentabilidade na Colônia Marcelino',
+        category: 'projetos',
+        author: `Grêmio Estudantil`,
+        date: '24/09/2026',
+        excerpt: 'Estudantes apresentaram maquetes ecológicas, projetos de hortas e inovações em agricultura familiar.',
+        content: 'A feira anual reuniu a comunidade local para prestigiar projetos ecológicos e práticos desenvolvidos pelos alunos do Ensino Fundamental II e Ensino Médio do Campo.'
     }
 ];
 
-// Carrega Notícias do LocalStorage ou usa o Padrão
+// Instâncias de Gráficos (Chart.js)
+let chartIdeb = null;
+let chartAprendizado = null;
+let chartRendimento = null;
+
+// Banco de dados dinâmico via LocalStorage
 let newsDatabase = JSON.parse(localStorage.getItem('ceias_news_db')) || defaultNews;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Data Atual Formatada
+    // Data Formatada no Topo
     const dateEl = document.getElementById('current-date');
     if (dateEl) {
         const now = new Date();
         dateEl.innerText = now.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     }
 
-    // 2. Navegação entre Abas
+    // Navegação por Abas
     const navButtons = document.querySelectorAll('.nav-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
@@ -47,13 +52,17 @@ document.addEventListener('DOMContentLoaded', () => {
             tabPanes.forEach(p => p.classList.remove('active'));
             btn.classList.add('active');
             document.getElementById(`tab-${tabId}`).classList.add('active');
+
+            if (tabId === 'ideb') initIdebChart();
+            if (tabId === 'aprendizado') initAprendizadoChart();
+            if (tabId === 'rendimento') initRendimentoChart();
         });
     });
 
-    // 3. Renderizar Feed de Notícias
+    // Renderizar Notícias
     renderNews(newsDatabase);
 
-    // 4. Filtro por Categoria
+    // Filtros de Categoria
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -68,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Pesquisa
+    // Pesquisa Dinâmica
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -80,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Engrenagem: Modo Noturno e Fonte
+    // Configurações e Engrenagem (Acessibilidade)
     const gearBtn = document.getElementById('gear-btn');
     const settingsMenu = document.getElementById('settings-menu');
     const toggleThemeBtn = document.getElementById('toggle-theme-btn');
@@ -97,6 +106,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (toggleThemeBtn) {
         toggleThemeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
+            initIdebChart();
+            initAprendizadoChart();
+            initRendimentoChart();
         });
     }
 
@@ -126,16 +138,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Abertura do Modal CMS
+    // CMS Modal
     const openCmsBtn = document.getElementById('open-cms-btn');
     if (openCmsBtn) {
         openCmsBtn.addEventListener('click', () => {
             document.getElementById('cms-modal').classList.remove('hidden');
         });
     }
+
+    // Inicialização do Gráfico do IDEB
+    initIdebChart();
 });
 
-// Renderizar Lista de Notícias no HTML
+// Renderizar Notícias
 function renderNews(list) {
     const container = document.getElementById('news-container');
     if (!container) return;
@@ -156,7 +171,7 @@ function renderNews(list) {
     `).join('');
 }
 
-// Modal de Leitura
+// Modal Leitura
 function openArticleModal(articleId) {
     const article = newsDatabase.find(n => n.id === articleId);
     if (!article) return;
@@ -180,7 +195,7 @@ function closeCMSModal() {
     document.getElementById('cms-modal').classList.add('hidden');
 }
 
-// Gestão de Publicação e Remoção Permanente (CMS)
+// Gestão CMS
 function handleCMSPublish(event) {
     event.preventDefault();
 
@@ -203,7 +218,7 @@ function handleCMSPublish(event) {
         
         if (newsDatabase.length < countBefore) {
             localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
-            alert(`✅ Matéria contendo "${title}" foi PERMANENTEMENTE removida.`);
+            alert(`✅ A matéria "${title}" foi PERMANENTEMENTE removida.`);
         } else {
             alert('⚠️ Nenhuma matéria correspondente foi encontrada para remoção.');
         }
@@ -225,10 +240,129 @@ function handleCMSPublish(event) {
 
         newsDatabase.unshift(newArticle);
         localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
-        alert(`🎉 Nova matéria PERMANENTEMENTE publicada!`);
+        alert(`🎉 Nova matéria PERMANENTEMENTE publicada no site!`);
     }
 
     renderNews(newsDatabase);
     closeCMSModal();
     document.getElementById('cms-form').reset();
+}
+
+/* ==========================================================================
+   INICIALIZAÇÃO DOS GRÁFICOS (CHART.JS)
+   ========================================================================== */
+
+function getThemeTextColor() {
+    return document.body.classList.contains('dark-theme') ? '#E2E8F0' : '#222222';
+}
+
+function initIdebChart() {
+    const ctx = document.getElementById('chartIdebProficiencia');
+    if (!ctx) return;
+    if (chartIdeb) chartIdeb.destroy();
+
+    chartIdeb = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Língua Portuguesa', 'Matemática'],
+            datasets: [{
+                label: 'Média do Colégio (Saeb 2025)',
+                data: [271.5, 281.28],
+                backgroundColor: ['#1B4998', '#C5A059'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: getThemeTextColor() } },
+                title: { display: true, text: 'Pontuação Padronizada Saeb (Escala 0-500)', color: getThemeTextColor() }
+            },
+            scales: {
+                y: { ticks: { color: getThemeTextColor() }, beginAtZero: false, min: 200, max: 350 },
+                x: { ticks: { color: getThemeTextColor() } }
+            }
+        }
+    });
+}
+
+function initAprendizadoChart() {
+    const ctx = document.getElementById('chartEvolucaoAprendizado');
+    if (!ctx) return;
+    if (chartAprendizado) chartAprendizado.destroy();
+
+    chartAprendizado = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2019', '2021', '2023'],
+            datasets: [
+                {
+                    label: 'Português Adequado (%)',
+                    data: [36, 38, 32],
+                    borderColor: '#1B4998',
+                    backgroundColor: '#1B4998',
+                    tension: 0.2,
+                    fill: false
+                },
+                {
+                    label: 'Matemática Adequada (%)',
+                    data: [28, 25, 26],
+                    borderColor: '#C5A059',
+                    backgroundColor: '#C5A059',
+                    tension: 0.2,
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: getThemeTextColor() } },
+                title: { display: true, text: 'Evolução % de Alunos no Nível Adequado (9º Ano)', color: getThemeTextColor() }
+            },
+            scales: {
+                y: { ticks: { color: getThemeTextColor() }, beginAtZero: true, max: 50 },
+                x: { ticks: { color: getThemeTextColor() } }
+            }
+        }
+    });
+}
+
+function initRendimentoChart() {
+    const ctx = document.getElementById('chartRendimentoEnsinoMedio');
+    if (!ctx) return;
+    if (chartRendimento) chartRendimento.destroy();
+
+    chartRendimento = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['1º Ano EM', '2º Ano EM', '3º Ano EM'],
+            datasets: [
+                {
+                    label: 'Aprovação (%)',
+                    data: [88.1, 98.3, 90.2],
+                    backgroundColor: '#2E7D32'
+                },
+                {
+                    label: 'Reprovação (%)',
+                    data: [11.9, 1.7, 9.8],
+                    backgroundColor: '#C62828'
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { labels: { color: getThemeTextColor() } },
+                title: { display: true, text: 'Rendimento Escolar Por Série (Ensino Médio 2025)', color: getThemeTextColor() }
+            },
+            scales: {
+                y: { ticks: { color: getThemeTextColor() }, beginAtZero: true, max: 100 },
+                x: { ticks: { color: getThemeTextColor() } }
+            }
+        }
+    });
 }

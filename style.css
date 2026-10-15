@@ -1,5 +1,6 @@
 /* ==========================================================================
-   ESTILO JORNALÍSTICO CLÁSSICO E TABELAS INFORMATIVAS (HARVARD BLUE)
+   ESTILOS - GAZETA SABATOVICH
+   Com suporte a exibição e adaptação da Logo C.E.I.A.S.
    ========================================================================== */
 
    :root {
@@ -20,6 +21,8 @@
     --table-header-bg: #002147;
     --table-header-text: #FFFFFF;
     --table-row-even: #F4F7FA;
+    --logo-container-bg: #FFFFFF;
+    --logo-border-color: #DDE2E8;
     --base-font-size: 16px;
 }
 
@@ -42,6 +45,8 @@ body.dark-theme {
     --table-header-bg: #152C4F;
     --table-header-text: #E2E8F0;
     --table-row-even: #182333;
+    --logo-container-bg: #FFFFFF; /* Garante fundo branco para destacar a logo no escuro */
+    --logo-border-color: var(--gold-accent);
 }
 
 * {
@@ -64,6 +69,7 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+/* Fundo Animado */
 .animated-bg {
     position: fixed;
     top: 0; left: 0;
@@ -96,7 +102,7 @@ body {
     padding: 0 20px;
 }
 
-/* Topo e Header */
+/* Topo */
 .top-bar {
     background-color: var(--harvard-dark);
     color: #FFFFFF;
@@ -122,8 +128,28 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 25px 0;
+    padding: 20px 0;
     gap: 20px;
+}
+
+/* Estilização da Logo sem falhas */
+.logo-box {
+    width: 125px;
+    height: 125px;
+    background-color: var(--logo-container-bg);
+    border: 2px solid var(--logo-border-color);
+    border-radius: 12px;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.official-logo-svg {
+    width: 100%;
+    height: 100%;
 }
 
 .title-box {
@@ -168,7 +194,7 @@ body {
 
 .cms-btn:hover { background-color: var(--royal-blue); }
 
-/* Navegação por Abas */
+/* Navegação */
 .nav-bar { background-color: var(--harvard-dark); }
 .nav-content { display: flex; justify-content: space-between; align-items: center; }
 .nav-links { display: flex; flex-wrap: wrap; }
@@ -223,12 +249,11 @@ body {
 
 marquee { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--alert-text); }
 
-/* Layout Geral */
+/* Estrutura das Páginas */
 .main-layout { margin-top: 25px; min-height: 550px; }
 .tab-pane { display: none; }
 .tab-pane.active { display: block; }
 
-/* Destaque Hero */
 .hero-article {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
@@ -259,7 +284,6 @@ marquee { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--alert
 
 .read-more-btn:hover { text-decoration: underline; }
 
-/* Grade de Notícias */
 .content-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 30px; }
 .filter-bar { display: flex; align-items: center; gap: 8px; margin-bottom: 20px; font-family: Arial, sans-serif; font-size: 0.85rem; }
 .filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 5px 12px; cursor: pointer; }
@@ -278,11 +302,22 @@ marquee { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--alert
 
 .qedu-quick-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--border-color); font-family: Arial, sans-serif; font-size: 0.85rem; }
 
-/* Estilização das Seções Informativas */
-.section-title { font-size: 1.8rem; color: var(--royal-blue); border-bottom: 3px solid var(--gold-accent); padding-bottom: 8px; margin-bottom: 25px; }
+/* Títulos das Seções */
+.section-title { font-size: 1.8rem; color: var(--royal-blue); border-bottom: 3px solid var(--gold-accent); padding-bottom: 8px; margin-bottom: 15px; }
+.section-desc { font-family: Arial, sans-serif; font-size: 0.95rem; color: var(--muted-color); margin-bottom: 25px; }
 .data-group-title { font-family: Arial, sans-serif; font-size: 1.1rem; font-weight: bold; color: var(--royal-blue); margin: 30px 0 15px 0; border-left: 4px solid var(--gold-accent); padding-left: 10px; }
 
-/* Banner Resumo IDEB */
+/* Contêiner de Gráficos */
+.chart-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 25px;
+    position: relative;
+    max-height: 380px;
+}
+
+/* Banner IDEB */
 .metrics-summary-banner {
     display: flex; justify-content: space-around; align-items: center;
     background: var(--card-bg); border: 1px solid var(--border-color);
@@ -294,32 +329,32 @@ marquee { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--alert
 .operator { font-size: 2rem; font-weight: bold; color: var(--gold-accent); }
 .highlight-box strong { font-size: 2.6rem; color: #2E7D32; }
 
-/* Cards Métricos */
-.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+/* Cards Méticos */
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .metric-card { background: var(--card-bg); border: 1px solid var(--border-color); padding: 22px; text-align: center; }
-.big-number { font-size: 2.8rem; font-weight: bold; color: var(--royal-blue); margin: 8px 0; }
+.big-number { font-size: 2.5rem; font-weight: bold; color: var(--royal-blue); margin: 8px 0; }
 .big-number-sm { font-size: 1.8rem; font-weight: bold; color: var(--royal-blue); margin: 12px 0; }
-.red-text { color: #C62828 !important; }
 
-/* Tabelas Educacionais */
+/* Tabelas */
 .table-responsive { overflow-x: auto; margin-bottom: 20px; }
 .data-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border: 1px solid var(--border-color); font-family: Arial, sans-serif; font-size: 0.9rem; }
 .data-table th { background: var(--table-header-bg); color: var(--table-header-text); padding: 12px; text-align: left; }
 .data-table td { padding: 12px; border-bottom: 1px solid var(--border-color); }
 .data-table tr:nth-child(even) { background-color: var(--table-row-even); }
 .green-cell { color: #2E7D32; font-weight: bold; }
+.yellow-cell { color: #F57F17; font-weight: bold; }
 .red-cell { color: #C62828; font-weight: bold; }
 
-/* Infraestrutura Grid */
+/* Infraestrutura */
 .infra-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
 .infra-box { background: var(--card-bg); border: 1px solid var(--border-color); padding: 12px 15px; font-family: Arial, sans-serif; font-size: 0.85rem; font-weight: bold; }
 .status-ok { border-left: 4px solid #2E7D32; }
 
-/* Disciplinas Grid */
+/* Disciplinas */
 .disciplines-grid { display: flex; flex-wrap: wrap; gap: 10px; }
 .disciplines-grid span { background: var(--royal-blue); color: #FFF; padding: 6px 14px; border-radius: 20px; font-family: Arial, sans-serif; font-size: 0.8rem; font-weight: bold; }
 
-/* Aba Sobre e Cartões de Contato */
+/* Sobre e Contato */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 .about-info { background: var(--card-bg); border: 1px solid var(--border-color); padding: 25px; }
 .about-info h3 { color: var(--royal-blue); margin-bottom: 12px; }
@@ -328,13 +363,10 @@ marquee { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--alert
 .contact-cards-container h3 { color: var(--royal-blue); }
 .contact-subtitle { font-family: Arial, sans-serif; font-size: 0.9rem; color: var(--muted-color); margin-bottom: 5px; }
 
-.contact-card { background: var(--card-bg); border: 1px solid var(--border-color); border-left: 5px solid var(--royal-blue); padding: 18px; display: flex; align-items: center; gap: 15px; }
-.contact-icon { font-size: 1.8rem; }
+.contact-card { background: var(--card-bg); border: 1px solid var(--border-color); border-left: 5px solid var(--royal-blue); padding: 20px; display: flex; align-items: center; gap: 15px; }
+.contact-icon { font-size: 2rem; }
 .contact-details strong { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--muted-color); display: block; margin-bottom: 3px; }
-.selectable-text { font-family: Arial, sans-serif; font-size: 0.95rem; font-weight: bold; color: var(--text-color); user-select: all; }
-
-.submit-btn { background: var(--royal-blue); color: #FFF; border: none; padding: 12px; font-family: Arial, sans-serif; font-weight: bold; cursor: pointer; }
-.submit-btn:hover { background: var(--harvard-navy); }
+.selectable-text { font-family: Arial, sans-serif; font-size: 1rem; font-weight: bold; color: var(--text-color); user-select: all; }
 
 /* Engrenagem */
 .settings-widget { position: fixed; bottom: 20px; left: 20px; z-index: 999; }
@@ -357,6 +389,9 @@ marquee { font-family: Arial, sans-serif; font-size: 0.85rem; color: var(--alert
 .form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; font-family: Arial, sans-serif; font-size: 0.85rem; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
 .form-group input, .form-group select, .form-group textarea { padding: 8px; border: 1px solid var(--border-color); background: var(--input-bg); color: var(--text-color); }
+
+.submit-btn { background: var(--royal-blue); color: #FFF; border: none; padding: 12px; font-family: Arial, sans-serif; font-weight: bold; cursor: pointer; }
+.submit-btn:hover { background: var(--harvard-navy); }
 
 /* Rodapé */
 .newspaper-footer { background: var(--harvard-dark); color: var(--muted-color); padding: 30px 0; margin-top: 50px; border-top: 4px solid var(--harvard-navy); font-family: Arial, sans-serif; font-size: 0.85rem; }

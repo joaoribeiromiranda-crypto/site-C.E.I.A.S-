@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gazeta Sabatovich | C.E.I.A.S. - Portal Informativo Escolar</title>
+    <title>Gazeta Sabatovich | C.E.I.A.S.</title>
+    <!-- CSS Externo -->
     <link rel="stylesheet" href="style.css">
+    <!-- Chart.js para gráficos interativos -->
+    <script src="file:///home/escola/Downloads/logo%20colegio.jpg"></script>
 </head>
 <body>
 
@@ -18,37 +21,66 @@
     <!-- Faixa de Topo -->
     <div class="top-bar">
         <div class="container top-bar-content">
-            <span class="location-tag">📍 SÃO JOSÉ DOS PINHAIS - PR • COLÔNIA MARCELINO</span>
+            <span class="location-tag">📍 COLÔNIA MARCELINO • SÃO JOSÉ DOS PINHAIS - PR</span>
             <span id="current-date" class="date-tag">Carregando data...</span>
-            <span class="email-tag">E-mail Gestor Autorizado: <strong>gomes.souza17@escola.pr.gov.br</strong></span>
+            <span class="email-tag">E-mail Oficial: <strong>sjpambrosiasabatovich@seed.pr.gov.br</strong></span>
         </div>
     </div>
 
-    <!-- Cabeçalho Principal -->
+    <!-- Cabeçalho Principal com a Logo Oficial Vetorial -->
     <header class="newspaper-header">
         <div class="container header-main">
+            <!-- Container da Logo sem bugs -->
+            <div class="logo-box" title="Logo Oficial C.E.I.A.S.">
+                <svg viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg" class="official-logo-svg">
+                    <!-- Estrela Central Vermelha superior -->
+                    <polygon points="200,8 208,30 232,30 212,44 219,66 200,52 181,66 188,44 168,30 192,30" fill="#E53935" />
+                    <!-- Estrelas Amarelas superiores -->
+                    <polygon points="140,32 145,46 161,46 148,55 153,69 140,60 127,69 132,55 119,46 135,46" fill="#FBC02D" />
+                    <polygon points="260,32 265,46 281,46 268,55 273,69 260,60 247,69 252,55 239,46 255,46" fill="#FBC02D" />
+                    <polygon points="85,72 90,86 106,86 93,95 98,109 85,100 72,109 77,95 64,86 80,86" fill="#FBC02D" />
+                    <polygon points="315,72 320,86 336,86 323,95 328,109 315,100 302,109 307,95 294,86 310,86" fill="#FBC02D" />
+                    <polygon points="170,72 174,83 186,83 176,90 180,101 170,93 160,101 164,90 154,83 166,83" fill="#FBC02D" />
+                    <polygon points="230,72 234,83 246,83 236,90 240,101 230,93 220,101 224,90 214,83 226,83" fill="#FBC02D" />
+                    
+                    <!-- Sigla C.E.I.A.S. em Azul Royal -->
+                    <path d="M 50,170 Q 200,310 350,170 L 330,290 Q 200,370 70,290 Z" fill="#1565C0"/>
+                    <text x="200" y="235" font-family="'Arial Black', sans-serif" font-weight="900" font-size="76" fill="#1565C0" text-anchor="middle" letter-spacing="1">C.E.I.A.S.</text>
+                    
+                    <!-- Faixas Arqueadas Inferiores (Vermelho) -->
+                    <path d="M 35,225 Q 180,345 180,325 Q 95,305 35,225 Z" fill="#D32F2F" />
+                    <path d="M 365,225 Q 220,345 220,325 Q 305,305 365,225 Z" fill="#D32F2F" />
+                    
+                    <!-- Inscrições Curvadas -->
+                    <text x="100" y="315" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#222" transform="rotate(-26 100,315)">Col. Est. do Campo Ir. Ambrósia Sabatovich</text>
+                    <text x="300" y="315" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#222" transform="rotate(26 300,315)">Ensino Fundamental e Médio</text>
+
+                    <!-- Lema Oficial em Azul -->
+                    <text x="200" y="405" font-family="'Georgia', serif" font-weight="bold" font-size="28" fill="#1565C0" text-anchor="middle">"Educando para a Comunidade"</text>
+                </svg>
+            </div>
+            
             <div class="title-box">
                 <h1 class="main-title">GAZETA SABATOVICH</h1>
-                <p class="school-name">COLÉGIO ESTADUAL DO CAMPO IRMÃ AMBRÓSIA SABATOVICH (C.E.I.A.S.)</p>
-                <p class="tagline">"Educando para a Comunidade • Nível de Socioeconômico: Médio-Alto (INEP)"</p>
+                <p class="school-name">COLÉGIO ESTADUAL DO CAMPO IRMÃ AMBRÓSIA SABATOVICH</p>
+                <p class="tagline">"Educando para a Comunidade • Dados Oficiais QEdu & INEP"</p>
             </div>
 
             <div class="cms-action-box">
-                <button id="open-cms-btn" class="cms-btn">🔑 ÁREA RESTRITA (CMS)</button>
+                <button id="open-cms-btn" class="cms-btn">🔑 Painel CMS (Gestão)</button>
             </div>
         </div>
 
-        <!-- Menu de Navegação por Abas -->
+        <!-- Menu de Navegação -->
         <nav class="nav-bar">
             <div class="container nav-content">
                 <div class="nav-links">
-                    <button class="nav-btn active" data-tab="home">Início & Notícias</button>
-                    <button class="nav-btn" data-tab="ideb">IDEB & SAEB</button>
-                    <button class="nav-btn" data-tab="aprendizado">Aprendizado</button>
-                    <button class="nav-btn" data-tab="rendimento">Rendimento & Distorção</button>
-                    <button class="nav-btn" data-tab="censo">Infraestrutura & Censo</button>
-                    <button class="nav-btn" data-tab="questionario">Perfil & Saeb</button>
-                    <button class="nav-btn" data-tab="sobre">Sobre & Contato</button>
+                    <button class="nav-btn active" data-tab="home">📰 Notícias</button>
+                    <button class="nav-btn" data-tab="ideb">📊 IDEB & Saeb</button>
+                    <button class="nav-btn" data-tab="aprendizado">📈 Aprendizado</button>
+                    <button class="nav-btn" data-tab="rendimento">📉 Rendimento & Fluxo</button>
+                    <button class="nav-btn" data-tab="censo">🏫 Infraestrutura</button>
+                    <button class="nav-btn" data-tab="sobre">📞 Contato & Sobre</button>
                 </div>
                 <div class="search-box">
                     <input type="text" id="search-input" placeholder="Buscar no site...">
@@ -57,12 +89,12 @@
         </nav>
     </header>
 
-    <!-- Banner de Alerta / Comunicados Rápidos -->
+    <!-- Banner de Alerta -->
     <div class="container alert-container">
         <div class="alert-banner">
-            <span class="alert-label">AVISOS RÁPIDOS</span>
+            <span class="alert-label">DESTAQUES QEDU</span>
             <marquee behavior="scroll" direction="left" id="urgent-notice">
-                📢 Destaque QEdu: IDEB Anos Finais alcança nota 5,8 (Aprendizado 5,88 x Fluxo 0,99) | Média ENEM: 501,18 pontos | Taxa de Aprovação Anos Finais em 99,0%!
+                📢 IDEB dos Anos Finais atinge nota 5,8 (Aprendizado 5,88 x Fluxo 0,99) | Média no ENEM: 501,18 pts | Aprovação nos Anos Finais: 99,0% | E-mail de Contato: sjpambrosiasabatovich@seed.pr.gov.br
             </marquee>
         </div>
     </div>
@@ -70,23 +102,23 @@
     <!-- Conteúdo Principal -->
     <main class="container main-layout">
 
-        <!-- ABA 1: INÍCIO E NOTÍCIAS -->
+        <!-- ABA 1: NOTÍCIAS -->
         <section id="tab-home" class="tab-pane active">
             
             <div class="hero-article">
                 <div class="hero-content">
-                    <span class="category-badge">DESTAQUE ACADÊMICO</span>
-                    <h2 class="hero-title">C.E.I.A.S. Alcança Nota 5,8 no IDEB dos Anos Finais</h2>
-                    <p class="article-meta">Fonte: QEdu / INEP • Gestão: gomes.souza17@escola.pr.gov.br</p>
-                    <p class="hero-excerpt">Com taxa de aprovação de 99,0% nos Anos Finais e nota padronizada SAEB de 5,88, o colégio fortalece sua posição de destaque educacional no espaço rural de São José dos Pinhais.</p>
-                    <button class="read-more-btn" onclick="openArticleModal('feira-campo')">Ler Matéria Completa →</button>
+                    <span class="category-badge">DESEMPENHO ESCOLAR</span>
+                    <h2 class="hero-title">C.E.I.A.S. Conquista Nota 5,8 no IDEB dos Anos Finais</h2>
+                    <p class="article-meta">Fonte: Microdados Saeb/INEP • Responsável: sjpambrosiasabatovich@seed.pr.gov.br</p>
+                    <p class="hero-excerpt">Combinação de excelente índice de aprovação (99,0%) e consistente nota média nas provas de Português e Matemática posiciona o colégio como referência de ensino no campo em São José dos Pinhais.</p>
+                    <button class="read-more-btn" onclick="openArticleModal('destaque-ideb')">Ler Matéria Completa →</button>
                 </div>
             </div>
 
             <div class="content-grid">
                 <div class="news-feed-column">
                     <div class="filter-bar">
-                        <span class="filter-label">Filtrar Categoria:</span>
+                        <span class="filter-label">Filtrar:</span>
                         <button class="filter-btn active" data-cat="todos">Todas</button>
                         <button class="filter-btn" data-cat="projetos">Projetos</button>
                         <button class="filter-btn" data-cat="esportes">Esportes</button>
@@ -95,55 +127,54 @@
                     </div>
 
                     <div id="news-container" class="news-list">
-                        <!-- Notícias via JS -->
+                        <!-- Notícias renderizadas via JS -->
                     </div>
                 </div>
 
-                <!-- Sidebar Informativa -->
                 <aside class="sidebar-column">
                     <div class="sidebar-card">
-                        <h3 class="widget-title">📌 Indicadores-Chave</h3>
+                        <h3 class="widget-title">📌 Resumo do Colégio</h3>
+                        <div class="qedu-quick-item">
+                            <span>Código INEP</span>
+                            <strong>41369270</strong>
+                        </div>
                         <div class="qedu-quick-item">
                             <span>IDEB Anos Finais</span>
-                            <strong>5,8 / 10</strong>
+                            <strong>5,8</strong>
                         </div>
                         <div class="qedu-quick-item">
-                            <span>Média Proficiência SAEB</span>
-                            <strong>5,88</strong>
-                        </div>
-                        <div class="qedu-quick-item">
-                            <span>Indicador de Fluxo</span>
-                            <strong>0,99</strong>
-                        </div>
-                        <div class="qedu-quick-item">
-                            <span>Média ENEM</span>
-                            <strong>501,18 pts</strong>
-                        </div>
-                        <div class="qedu-quick-item">
-                            <span>Aprovação Anos Finais</span>
+                            <span>Aprovação Geral (Fundamental)</span>
                             <strong>99,0%</strong>
                         </div>
                         <div class="qedu-quick-item">
-                            <span>Aprovação Ensino Médio</span>
+                            <span>Aprovação Geral (Médio)</span>
                             <strong>92,4%</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Nível Socioeconômico</span>
+                            <strong>Médio-Alto</strong>
+                        </div>
+                        <div class="qedu-quick-item">
+                            <span>Total de Alunos</span>
+                            <strong>474</strong>
                         </div>
                     </div>
 
                     <div class="sidebar-card">
-                        <h3 class="widget-title">📅 Agenda Escolar</h3>
+                        <h3 class="widget-title">📅 Próximos Eventos</h3>
                         <ul class="event-list">
                             <li>
                                 <div class="event-date">28 SET</div>
                                 <div class="event-details">
-                                    <strong>Simulado Prova Paraná / SAEB</strong>
-                                    <p>Turmas do 9º Ano e 3º EM</p>
+                                    <strong>Simulado Prova Paraná</strong>
+                                    <p>Turmas de 9º Ano e 3º EM</p>
                                 </div>
                             </li>
                             <li>
                                 <div class="event-date">05 OUT</div>
                                 <div class="event-details">
                                     <strong>Mostra Cultural da Colônia</strong>
-                                    <p>Apresentações no auditório</p>
+                                    <p>Apresentações na quadra coberta</p>
                                 </div>
                             </li>
                         </ul>
@@ -152,7 +183,7 @@
             </div>
         </section>
 
-        <!-- ABA 2: IDEB & SAEB -->
+        <!-- ABA 2: IDEB & SAEB (COM GRÁFICO COMPARATIVO) -->
         <section id="tab-ideb" class="tab-pane">
             <h2 class="section-title">Índice de Desenvolvimento da Educação Básica (IDEB)</h2>
             
@@ -173,63 +204,41 @@
                 </div>
             </div>
 
+            <div class="data-group-title">Gráfico Comparativo de Proficiência Média (Saeb 2025)</div>
+            <div class="chart-container">
+                <canvas id="chartIdebProficiencia"></canvas>
+            </div>
+
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <h3>Proficiência em Português</h3>
-                    <div class="big-number">271,5</div>
-                    <p>Média padronizada obtida pelos estudantes no exame SAEB.</p>
+                    <h3>Língua Portuguesa (Saeb)</h3>
+                    <div class="big-number">271,5 pts</div>
+                    <p>Média padronizada obtida pelos estudantes dos Anos Finais.</p>
                 </div>
                 <div class="metric-card">
-                    <h3>Proficiência em Matemática</h3>
-                    <div class="big-number">281,28</div>
-                    <p>Média padronizada obtida pelos estudantes no exame SAEB.</p>
+                    <h3>Matemática (Saeb)</h3>
+                    <div class="big-number">281,3 pts</div>
+                    <p>Média padronizada obtida pelos estudantes dos Anos Finais.</p>
                 </div>
                 <div class="metric-card">
-                    <h3>Classificação NSE</h3>
-                    <div class="big-number-sm">Médio-Alto</div>
-                    <p>Nível Socioeconômico oficial classificado pelo INEP.</p>
+                    <h3>Média ENEM (Concluintes)</h3>
+                    <div class="big-number">501,2 pts</div>
+                    <p>Desempenho geral nas provas do Exame Nacional do Ensino Médio.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ABA 3: APRENDIZADO ADEQUADO -->
+        <!-- ABA 3: APRENDIZADO (COM GRÁFICO COMPARATIVO) -->
         <section id="tab-aprendizado" class="tab-pane">
-            <h2 class="section-title">Evolução do Aprendizado Adequado (SAEB)</h2>
-            
-            <div class="data-group-title">9º Ano - Ensino Fundamental</div>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <h3>Língua Portuguesa (2023)</h3>
-                    <div class="big-number">32%</div>
-                    <p>Alunos no nível adequado (2019: 36% | 2021: 38%).</p>
-                </div>
-                <div class="metric-card">
-                    <h3>Matemática (2023)</h3>
-                    <div class="big-number">26%</div>
-                    <p>Alunos no nível adequado (2019: 28% | 2021: 25%).</p>
-                </div>
+            <h2 class="section-title">Evolução do Aprendizado Adequado (9º Ano)</h2>
+            <p class="section-desc">Porcentagem de estudantes que demonstraram conhecimento considerado adequado para sua etapa escolar nos exames oficiais.</p>
+
+            <div class="data-group-title">Evolução Histórica do Aprendizado (2019 vs 2021 vs 2023)</div>
+            <div class="chart-container">
+                <canvas id="chartEvolucaoAprendizado"></canvas>
             </div>
 
-            <div class="data-group-title">3º Ano - Ensino Médio</div>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <h3>Língua Portuguesa</h3>
-                    <div class="big-number">40%</div>
-                    <p>Alunos demonstrando nível de aprendizado adequado.</p>
-                </div>
-                <div class="metric-card">
-                    <h3>Matemática</h3>
-                    <div class="big-number red-text">4%</div>
-                    <p>Alunos demonstrando nível de aprendizado adequado (Atenção Pedagógica).</p>
-                </div>
-                <div class="metric-card">
-                    <h3>Média Geral ENEM</h3>
-                    <div class="big-number">501,18</div>
-                    <p>Pontuação média oficial dos estudantes concluintes.</p>
-                </div>
-            </div>
-
-            <div class="data-group-title">Distribuição por Níveis de Proficiência (9º Ano)</div>
+            <div class="data-group-title">Distribuição dos Alunos por Nível de Proficiência (Saeb 2023 - 9º Ano)</div>
             <div class="table-responsive">
                 <table class="data-table">
                     <thead>
@@ -238,83 +247,121 @@
                             <th>2019</th>
                             <th>2021</th>
                             <th>2023</th>
+                            <th>Interpretação</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Avançado</td><td>4% (2 alunos)</td><td>2%</td><td>3%</td></tr>
-                        <tr><td>Proficiente</td><td>24% (14 alunos)</td><td>23%</td><td>23%</td></tr>
-                        <tr><td>Básico</td><td>54% (32 alunos)</td><td>58%</td><td>55%</td></tr>
-                        <tr><td>Insuficiente</td><td>18% (11 alunos)</td><td>17%</td><td>18%</td></tr>
+                        <tr>
+                            <td><strong>Avançado</strong></td>
+                            <td>4% (2 alunos)</td>
+                            <td>2%</td>
+                            <td><span class="green-cell">3%</span></td>
+                            <td>Dominam os conteúdos com excelência</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Proficiente</strong></td>
+                            <td>24% (14 alunos)</td>
+                            <td>23%</td>
+                            <td><span class="green-cell">23%</span></td>
+                            <td>Demonstram o aprendizado esperado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Básico</strong></td>
+                            <td>54% (32 alunos)</td>
+                            <td>58%</td>
+                            <td><span class="yellow-cell">55%</span></td>
+                            <td>Necessitam de reforço para consolidação</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Insuficiente</strong></td>
+                            <td>18% (11 alunos)</td>
+                            <td>17%</td>
+                            <td><span class="red-cell">18%</span></td>
+                            <td>Foco prioritário em programas de recuperação</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- ABA 4: RENDIMENTO & DISTORÇÃO -->
+        <!-- ABA 4: RENDIMENTO & FLUXO (COM GRÁFICO COMPARATIVO) -->
         <section id="tab-rendimento" class="tab-pane">
             <h2 class="section-title">Taxas de Rendimento Escolar & Distorção Idade-Série</h2>
-            
-            <div class="data-group-title">Taxas Globais por Etapa Escolar</div>
+
+            <div class="data-group-title">Comparativo de Aprovação vs Reprovação por Ano (Ensino Médio)</div>
+            <div class="chart-container">
+                <canvas id="chartRendimentoEnsinoMedio"></canvas>
+            </div>
+
+            <div class="data-group-title">Tabela Detalhada de Rendimento Escolar</div>
             <div class="table-responsive">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th>Etapa de Ensino</th>
+                            <th>Etapa / Ano Escolar</th>
                             <th>Aprovação</th>
                             <th>Reprovação</th>
-                            <th>Abandono</th>
+                            <th>Abandono Escolar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><strong>Anos Finais (Fundamental II)</strong></td><td class="green-cell">99,0%</td><td>1,0%</td><td class="green-cell">0,0%</td></tr>
-                        <tr><td><strong>Ensino Médio (Geral)</strong></td><td>92,4%</td><td>7,6%</td><td class="green-cell">0,0%</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="data-group-title">Detalhamento Ano a Ano (Ensino Médio)</div>
-            <div class="table-responsive">
-                <table class="data-table">
-                    <thead>
                         <tr>
-                            <th>Série</th>
-                            <th>Aprovação</th>
-                            <th>Reprovação</th>
-                            <th>Abandono</th>
+                            <td><strong>Anos Finais (Fundamental II)</strong></td>
+                            <td class="green-cell">99,0%</td>
+                            <td>1,0%</td>
+                            <td class="green-cell">0,0%</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>1º Ano do Ensino Médio</strong></td><td>88,1%</td><td class="red-cell">11,9%</td><td>0,0%</td></tr>
-                        <tr><td><strong>2º Ano do Ensino Médio</strong></td><td class="green-cell">98,3%</td><td>1,7%</td><td>0,0%</td></tr>
-                        <tr><td><strong>3º Ano do Ensino Médio</strong></td><td>90,2%</td><td>9,8%</td><td>0,0%</td></tr>
+                        <tr>
+                            <td><strong>1º Ano do Ensino Médio</strong></td>
+                            <td>88,1%</td>
+                            <td class="red-cell">11,9%</td>
+                            <td class="green-cell">0,0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2º Ano do Ensino Médio</strong></td>
+                            <td class="green-cell">98,3%</td>
+                            <td>1,7%</td>
+                            <td class="green-cell">0,0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3º Ano do Ensino Médio</strong></td>
+                            <td>90,2%</td>
+                            <td>9,8%</td>
+                            <td class="green-cell">0,0%</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
 
-            <div class="data-group-title">Indicador de Distorção Idade-Série (Atraso de 2 anos ou mais)</div>
+            <div class="data-group-title">Distorção Idade-Série (Alunos com 2 anos ou mais de atraso escolar)</div>
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <h3>Média Geral Ensino Médio</h3>
+                    <h3>Média no Ensino Médio</h3>
                     <div class="big-number">7,7%</div>
-                    <p>A cada 100 alunos, cerca de 8 possuem atraso escolar igual ou superior a 2 anos.</p>
+                    <p>Apenas ~8 em cada 100 alunos estão fora da faixa etária ideal.</p>
                 </div>
                 <div class="metric-card">
-                    <h3>1º e 2º Ano do EM</h3>
+                    <h3>1º Ano Médio</h3>
+                    <div class="big-number">8,6%</div>
+                    <p>Taxa de distorção no ano inicial.</p>
+                </div>
+                <div class="metric-card">
+                    <h3>2º Ano Médio</h3>
                     <div class="big-number">6,6%</div>
-                    <p>Percentual de distorção registrado no 1º e 2º ano.</p>
+                    <p>Menor taxa de distorção do ciclo.</p>
                 </div>
                 <div class="metric-card">
-                    <h3>3º Ano do EM</h3>
+                    <h3>3º Ano Médio</h3>
                     <div class="big-number">8,0%</div>
-                    <p>Percentual de distorção registrado no 3º ano do Ensino Médio.</p>
+                    <p>Taxa de distorção na conclusão.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ABA 5: INFRAESTRUTURA & CENSO -->
+        <!-- ABA 5: INFRAESTRUTURA -->
         <section id="tab-censo" class="tab-pane">
-            <h2 class="section-title">Infraestrutura Escolar & Dados do Censo (INEP: 41369270)</h2>
-            
+            <h2 class="section-title">Estrutura e Recursos do Colégio (Censo INEP 41369270)</h2>
+
             <div class="metrics-grid mb-30">
                 <div class="metric-card">
                     <h3>Total de Matrículas</h3>
@@ -324,29 +371,25 @@
                 <div class="metric-card">
                     <h3>Professores Ativos</h3>
                     <div class="big-number">19</div>
-                    <p>Corpo docente registrado na unidade de ensino.</p>
+                    <p>Corpo docente qualificado</p>
                 </div>
                 <div class="metric-card">
                     <h3>Localização</h3>
                     <div class="big-number-sm">Zona Rural</div>
-                    <p>Colônia Marcelino - São José dos Pinhais / PR</p>
+                    <p>Colônia Marcelino</p>
                 </div>
             </div>
 
-            <div class="data-group-title">Instalações e Serviços Confirmados no Censo</div>
+            <div class="data-group-title">Infraestrutura e Equipamentos Disponíveis</div>
             <div class="infra-grid">
-                <div class="infra-box status-ok">✔️ Acessibilidade (Rampas e Banheiros)</div>
-                <div class="infra-box status-ok">✔️ Alimentação Escolar Gratuita</div>
-                <div class="infra-box status-ok">✔️ Água Potável Encanada</div>
-                <div class="infra-box status-ok">✔️ Biblioteca e Sala de Leitura</div>
-                <div class="infra-box status-ok">✔️ Cozinha e Refeitório</div>
-                <div class="infra-box status-ok">✔️ Quadra de Esportes Coberta</div>
-                <div class="infra-box status-ok">✔️ Laboratório de Informática</div>
-                <div class="infra-box status-ok">✔️ Sala de Diretoria e Sala de Professores</div>
-                <div class="infra-box status-ok">✔️ Internet e Computadores</div>
-                <div class="infra-box status-ok">✔️ Esgoto Sanitário Via Fossa</div>
-                <div class="infra-box status-ok">✔️ Lixo Coletado Periódico</div>
-                <div class="infra-box status-ok">✔️ Energia Elétrica da Rede Pública</div>
+                <div class="infra-box status-ok">✔️ Acessibilidade Completa (Rampas e Banheiros Adaptados)</div>
+                <div class="infra-box status-ok">✔️ Alimentação Escolar Gratuita e Água Encanada Potável</div>
+                <div class="infra-box status-ok">✔️ Biblioteca e Sala de Leitura Equipadas</div>
+                <div class="infra-box status-ok">✔️ Cozinha Industrial e Refeitório Amplo</div>
+                <div class="infra-box status-ok">✔️ Quadra de Esportes Coberta para Educação Física</div>
+                <div class="infra-box status-ok">✔️ Laboratório de Informática com Internet e Computadores</div>
+                <div class="infra-box status-ok">✔️ Sala de Professores e Diretoria</div>
+                <div class="infra-box status-ok">✔️ Saneamento via Fossa e Coleta Periódica de Lixo</div>
             </div>
 
             <div class="data-group-title">Disciplinas e Áreas do Conhecimento Ofertadas</div>
@@ -358,82 +401,37 @@
                 <span>Física</span>
                 <span>Geografia</span>
                 <span>Ensino Religioso</span>
-                <span>Artes (Visual, Dança, Música, Teatro)</span>
+                <span>Artes (Visuais, Música, Dança e Teatro)</span>
                 <span>Educação Física</span>
             </div>
         </section>
 
-        <!-- ABA 6: PERFIL & QUESTIONÁRIO SAEB -->
-        <section id="tab-questionario" class="tab-pane">
-            <h2 class="section-title">Perfil dos Estudantes e Questionários Contextuais SAEB</h2>
-            
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <h3>Alunos do 9º Ano</h3>
-                    <div class="big-number">59</div>
-                    <p>Alunos responderam ao questionário contextual de 49 perguntas.</p>
-                </div>
-                <div class="metric-card">
-                    <h3>Alunos do 3º Ano EM</h3>
-                    <div class="big-number">48</div>
-                    <p>Alunos responderam ao questionário contextual de 50 perguntas.</p>
-                </div>
-            </div>
-
-            <div class="data-group-title">Destaques Contextuais e Hábitos dos Estudantes</div>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <h3>Expectativa de Ensino Superior</h3>
-                    <div class="big-number">13%</div>
-                    <p>Alunos que pretendem cursar faculdade/universidade.</p>
-                </div>
-                <div class="metric-card">
-                    <h3>Interesse por Notícias</h3>
-                    <div class="big-number">35%</div>
-                    <p>Alunos com hábito frequente de ler e conversar sobre o que acontece no mundo.</p>
-                </div>
-                <div class="metric-card">
-                    <h3>Leitura Extracurricular</h3>
-                    <div class="big-number">24%</div>
-                    <p>Alunos que leem livros não exigidos pela escola.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ABA 7: SOBRE E CONTATO -->
+        <!-- ABA 6: CONTATO E SOBRE -->
         <section id="tab-sobre" class="tab-pane">
-            <h2 class="section-title">Sobre a Instituição & Canais de Contato</h2>
+            <h2 class="section-title">Sobre a Instituição & Contato Direto</h2>
             
             <div class="about-grid">
                 <div class="about-info">
-                    <h3>Nossa História e Patrona</h3>
-                    <p>A Serva de Deus Irmã Ambrósia Sabatovich dedicou sua vida ao amparo humano e educacional. O colégio mantém viva sua memória, promovendo ensino de qualidade na comunidade rural da Colônia Marcelino.</p>
+                    <h3>Nossa História e Missão</h3>
+                    <p>O <strong>Colégio Estadual do Campo Irmã Ambrósia Sabatovich (C.E.I.A.S.)</strong> carrega o nome e a memória da Serva de Deus Irmã Ambrósia Sabatovich. Nossa missão é proporcionar um ensino gratuito de altíssima qualidade integrando os saberes acadêmicos à rica identidade rural da Colônia Marcelino.</p>
                 </div>
 
                 <div class="contact-cards-container">
-                    <h3>📞 Canais Oficiais para Contato Manual</h3>
-                    <p class="contact-subtitle">Utilize os dados abaixo para falar diretamente com a instituição:</p>
+                    <h3>✉️ Contato Institucional Oficial</h3>
+                    <p class="contact-subtitle">Para matrículas, solicitações de documentos e atendimento escolar, utilize o e-mail oficial abaixo:</p>
 
                     <div class="contact-card">
                         <div class="contact-icon">📧</div>
                         <div class="contact-details">
-                            <strong>E-mail Gestor Autorizado:</strong>
-                            <p class="selectable-text">gomes.souza17@escola.pr.gov.br</p>
-                        </div>
-                    </div>
-
-                    <div class="contact-card">
-                        <div class="contact-icon">📱</div>
-                        <div class="contact-details">
-                            <strong>Telefone / WhatsApp Escolar:</strong>
-                            <p class="selectable-text">(41) 3385-1234 / (41) 99999-8888</p>
+                            <strong>E-mail Institucional Único:</strong>
+                            <p class="selectable-text">sjpambrosiasabatovich@seed.pr.gov.br</p>
                         </div>
                     </div>
 
                     <div class="contact-card">
                         <div class="contact-icon">📍</div>
                         <div class="contact-details">
-                            <strong>Endereço da Instituição:</strong>
+                            <strong>Endereço da Escola:</strong>
                             <p class="selectable-text">Estrada Ver. Domingos Benevenuto Moletta, 17173 — Colônia Marcelino, São José dos Pinhais - PR (CEP 83024-899)</p>
                         </div>
                     </div>
@@ -443,17 +441,17 @@
 
     </main>
 
-    <!-- Engrenagem de Opções -->
+    <!-- Engrenagem de Configurações e Acessibilidade -->
     <div class="settings-widget">
         <button id="gear-btn" class="gear-btn" title="Configurações e Acessibilidade">⚙️</button>
         <div id="settings-menu" class="settings-menu hidden">
             <h4>⚙️ Personalização</h4>
             <div class="setting-row">
                 <span>Aparência:</span>
-                <button id="toggle-theme-btn" class="opt-btn">🌓 Modo Noturno</button>
+                <button id="toggle-theme-btn" class="opt-btn">🌓 Alternar Modo Noturno</button>
             </div>
             <div class="setting-row">
-                <span>Tamanho da Fonte:</span>
+                <span>Tamanho do Texto:</span>
                 <div class="font-btns">
                     <button id="font-decrease" class="opt-btn">A-</button>
                     <button id="font-reset" class="opt-btn">A</button>
@@ -463,7 +461,7 @@
         </div>
     </div>
 
-    <!-- Modal Leitura de Notícia -->
+    <!-- Modal de Leitura de Matéria -->
     <div id="article-modal" class="modal-overlay hidden">
         <div class="modal-card">
             <button class="close-modal-btn" onclick="closeArticleModal()">✕</button>
@@ -471,18 +469,18 @@
         </div>
     </div>
 
-    <!-- Modal CMS -->
+    <!-- Modal de Gestão CMS -->
     <div id="cms-modal" class="modal-overlay hidden">
         <div class="modal-card cms-card">
             <button class="close-modal-btn" onclick="closeCMSModal()">✕</button>
             <h2>🔑 Painel de Gestão e Publicação (CMS)</h2>
-            <p class="cms-subtitle">Acesso restrito exclusivo do administrador autorizado.</p>
+            <p class="cms-subtitle">Acesso restrito do administrador do colégio.</p>
 
             <form id="cms-form" onsubmit="handleCMSPublish(event)">
                 <div class="form-row">
                     <div class="form-group">
                         <label>E-mail do Administrador:</label>
-                        <input type="email" id="cms-email" placeholder="gomes.souza17@escola.pr.gov.br" required>
+                        <input type="email" id="cms-email" placeholder="sjpambrosiasabatovich@seed.pr.gov.br" required>
                     </div>
                     <div class="form-group">
                         <label>Senha de Acesso:</label>
@@ -493,8 +491,8 @@
                 <hr style="margin: 10px 0 15px 0; border: 0; border-top: 1px solid var(--border-color);">
 
                 <div class="form-group">
-                    <label>Título da Notícia ou Evento:</label>
-                    <input type="text" id="cms-title" placeholder="Digite o título exato..." required>
+                    <label>Título da Matéria ou Evento:</label>
+                    <input type="text" id="cms-title" placeholder="Digite o título..." required>
                 </div>
 
                 <div class="form-row">
@@ -510,23 +508,23 @@
                     <div class="form-group">
                         <label>Ação do Sistema:</label>
                         <select id="cms-action" required>
-                            <option value="publish">Publicar Novo Conteúdo</option>
-                            <option value="remove">Tirar do Ar (Remover)</option>
+                            <option value="publish">Publicar Matéria</option>
+                            <option value="remove">Remover Matéria</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label>Resumo Curto (Feed):</label>
-                    <input type="text" id="cms-excerpt" placeholder="Breve resumo que aparecerá no feed...">
+                    <label>Resumo Curto:</label>
+                    <input type="text" id="cms-excerpt" placeholder="Breve resumo para o feed...">
                 </div>
 
                 <div class="form-group">
                     <label>Texto Completo:</label>
-                    <textarea id="cms-content" rows="4" placeholder="Escreva o texto completo da matéria..."></textarea>
+                    <textarea id="cms-content" rows="4" placeholder="Escreva a matéria na íntegra..."></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn gold-submit">Confirmar Alteração Permanente</button>
+                <button type="submit" class="submit-btn gold-submit">Confirmar Operação no Site</button>
             </form>
         </div>
     </div>
@@ -535,8 +533,8 @@
     <footer class="newspaper-footer">
         <div class="container footer-content">
             <div class="footer-left">
-                <p>&copy; 2026 Gazeta Sabatovich — C.E.I.A.S. • Fonte de dados educacionais: INEP / QEdu</p>
-                <p>Contato Gestor Exclusivo: <strong>gomes.souza17@escola.pr.gov.br</strong></p>
+                <p>&copy; 2026 Gazeta Sabatovich — C.E.I.A.S. • Dados Oficiais extraídos do INEP/QEdu</p>
+                <p>E-mail de Contato: <strong>sjpambrosiasabatovich@seed.pr.gov.br</strong></p>
             </div>
             <div class="footer-right">
                 <p>Desenvolvido por alunos do 2ºB:</p>
@@ -545,6 +543,7 @@
         </div>
     </footer>
 
+    <!-- JavaScript Externo -->
     <script src="script.js"></script>
 </body>
 </html>
