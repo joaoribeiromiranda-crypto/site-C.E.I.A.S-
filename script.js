@@ -1,8 +1,8 @@
-// Credenciais Únicas de Gestão
+// Credenciais de Acesso CMS
 const ADMIN_EMAIL = "sjpambrosiasabatovich@seed.pr.gov.br";
 const ADMIN_PASS = "ceias2026";
 
-// Notícias Iniciais Padrão
+// Notícias Padrão
 const defaultNews = [
     {
         id: 'destaque-ideb',
@@ -10,7 +10,7 @@ const defaultNews = [
         category: 'institucional',
         author: `Gestão (${ADMIN_EMAIL})`,
         date: '10/10/2026',
-        excerpt: 'Combinação de excelente índice de aprovação (99,0%) e nota média SAEB de 5,88 fortalece o colégio como referência no espaço rural.',
+        excerpt: 'Combinação de excelente índice de aprovação (99,0%) e nota média SAEB de 5,88 fortalece o colégio.',
         content: 'O Colégio Estadual do Campo Irmã Ambrósia Sabatovich celebrou o excelente resultado no IDEB. O indicador é composto pela taxa de aprovação de 99,0% combinada com médias expressivas no exame Saeb: 271,5 em Língua Portuguesa e 281,3 em Matemática.'
     },
     {
@@ -24,12 +24,11 @@ const defaultNews = [
     }
 ];
 
-// Instâncias de Gráficos (Chart.js)
-let chartIdeb = null;
-let chartAprendizado = null;
-let chartRendimento = null;
+// Instâncias de Gráficos
+let chartIdebInstance = null;
+let chartAprendizadoInstance = null;
+let chartRendimentoInstance = null;
 
-// Banco de dados dinâmico via LocalStorage
 let newsDatabase = JSON.parse(localStorage.getItem('ceias_news_db')) || defaultNews;
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,7 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
         dateEl.innerText = now.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     }
 
-    // Navegação por Abas
+    // Toggle Menu Mobile
+    const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
+    const navLinksContainer = document.getElementById('nav-links-container');
+
+    if (mobileMenuBtn && navLinksContainer) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('mobile-open');
+        });
+    }
+
+    // Navegação entre Abas
     const navButtons = document.querySelectorAll('.nav-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
@@ -51,18 +60,28 @@ document.addEventListener('DOMContentLoaded', () => {
             navButtons.forEach(b => b.classList.remove('active'));
             tabPanes.forEach(p => p.classList.remove('active'));
             btn.classList.add('active');
-            document.getElementById(`tab-${tabId}`).classList.add('active');
+            
+            const activePane = document.getElementById(`tab-${tabId}`);
+            if (activePane) {
+                activePane.classList.add('active');
+            }
 
-            if (tabId === 'ideb') initIdebChart();
-            if (tabId === 'aprendizado') initAprendizadoChart();
-            if (tabId === 'rendimento') initRendimentoChart();
+            // Fecha o menu móvel ao clicar em uma aba
+            if (navLinksContainer) navLinksContainer.classList.remove('mobile-open');
+
+            // Renderiza gráficos com pequeno atraso para adaptação de tela
+            setTimeout(() => {
+                if (tabId === 'ideb') renderIdebChart();
+                if (tabId === 'aprendizado') renderAprendizadoChart();
+                if (tabId === 'rendimento') renderRendimentoChart();
+            }, 60);
         });
     });
 
-    // Renderizar Notícias
+    // Renderiza Notícias Iniciais
     renderNews(newsDatabase);
 
-    // Filtros de Categoria
+    // Filtro por Categoria
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -77,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Pesquisa Dinâmica
+    // Campo de Busca
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -89,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Configurações e Engrenagem (Acessibilidade)
+    // Menu de Configurações
     const gearBtn = document.getElementById('gear-btn');
     const settingsMenu = document.getElementById('settings-menu');
     const toggleThemeBtn = document.getElementById('toggle-theme-btn');
@@ -98,24 +117,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const fontReset = document.getElementById('font-reset');
 
     if (gearBtn && settingsMenu) {
-        gearBtn.addEventListener('click', () => {
-            settingsMenu.classList.toggle('hidden');
-        });
+        gearBtn.addEventListener('click', () => settingsMenu.classList.toggle('hidden'));
     }
 
     if (toggleThemeBtn) {
         toggleThemeBtn.addEventListener('click', () => {
             document.body.classList.toggle('dark-theme');
-            initIdebChart();
-            initAprendizadoChart();
-            initRendimentoChart();
+            renderIdebChart();
+            renderAprendizadoChart();
+            renderRendimentoChart();
         });
     }
 
     let currentFontSize = 16;
     if (fontIncrease) {
         fontIncrease.addEventListener('click', () => {
-            if (currentFontSize < 22) {
+            if (currentFontSize < 20) {
                 currentFontSize += 2;
                 document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
             }
@@ -124,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (fontDecrease) {
         fontDecrease.addEventListener('click', () => {
-            if (currentFontSize > 12) {
+            if (currentFontSize > 13) {
                 currentFontSize -= 2;
                 document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
             }
@@ -145,18 +162,15 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('cms-modal').classList.remove('hidden');
         });
     }
-
-    // Inicialização do Gráfico do IDEB
-    initIdebChart();
 });
 
-// Renderizar Notícias
+// Funções de Notícias
 function renderNews(list) {
     const container = document.getElementById('news-container');
     if (!container) return;
 
     if (list.length === 0) {
-        container.innerHTML = `<p style="padding:20px; text-align:center;">Nenhuma notícia encontrada.</p>`;
+        container.innerHTML = `<p style="padding:15px; text-align:center;">Nenhuma notícia encontrada.</p>`;
         return;
     }
 
@@ -171,7 +185,6 @@ function renderNews(list) {
     `).join('');
 }
 
-// Modal Leitura
 function openArticleModal(articleId) {
     const article = newsDatabase.find(n => n.id === articleId);
     if (!article) return;
@@ -179,10 +192,10 @@ function openArticleModal(articleId) {
     const modalContent = document.getElementById('modal-article-content');
     modalContent.innerHTML = `
         <span class="category-badge">${article.category.toUpperCase()}</span>
-        <h2 style="font-size: 1.7rem; color: var(--royal-blue); margin: 12px 0 8px 0;">${article.title}</h2>
+        <h2 style="font-size: 1.5rem; color: var(--royal-blue); margin: 10px 0 6px 0;">${article.title}</h2>
         <p class="article-meta">Autor: <strong>${article.author}</strong> | Data: ${article.date}</p>
-        <hr style="margin: 15px 0; border: 0; border-top: 1px solid var(--border-color);">
-        <p style="font-size: 1rem; line-height: 1.7;">${article.content}</p>
+        <hr style="margin: 12px 0; border: 0; border-top: 1px solid var(--border-color);">
+        <p style="font-size: 0.95rem; line-height: 1.6;">${article.content}</p>
     `;
     document.getElementById('article-modal').classList.remove('hidden');
 }
@@ -195,7 +208,6 @@ function closeCMSModal() {
     document.getElementById('cms-modal').classList.add('hidden');
 }
 
-// Gestão CMS
 function handleCMSPublish(event) {
     event.preventDefault();
 
@@ -218,13 +230,13 @@ function handleCMSPublish(event) {
         
         if (newsDatabase.length < countBefore) {
             localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
-            alert(`✅ A matéria "${title}" foi PERMANENTEMENTE removida.`);
+            alert(`✅ Matéria "${title}" removida.`);
         } else {
-            alert('⚠️ Nenhuma matéria correspondente foi encontrada para remoção.');
+            alert('⚠️ Nenhuma matéria correspondente foi encontrada.');
         }
     } else {
         if (!excerpt || !content) {
-            alert("⚠️ Preencha o Resumo e o Texto Completo para publicar.");
+            alert("⚠️ Preencha todos os campos.");
             return;
         }
 
@@ -240,7 +252,7 @@ function handleCMSPublish(event) {
 
         newsDatabase.unshift(newArticle);
         localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
-        alert(`🎉 Nova matéria PERMANENTEMENTE publicada no site!`);
+        alert(`🎉 Nova matéria publicada com sucesso!`);
     }
 
     renderNews(newsDatabase);
@@ -248,70 +260,66 @@ function handleCMSPublish(event) {
     document.getElementById('cms-form').reset();
 }
 
-/* ==========================================================================
-   INICIALIZAÇÃO DOS GRÁFICOS (CHART.JS)
-   ========================================================================== */
-
-function getThemeTextColor() {
+// Renderização de Gráficos Otimizados
+function getTextColor() {
     return document.body.classList.contains('dark-theme') ? '#E2E8F0' : '#222222';
 }
 
-function initIdebChart() {
-    const ctx = document.getElementById('chartIdebProficiencia');
-    if (!ctx) return;
-    if (chartIdeb) chartIdeb.destroy();
+function renderIdebChart() {
+    const canvas = document.getElementById('chartIdebProficiencia');
+    if (!canvas || typeof Chart === 'undefined') return;
 
-    chartIdeb = new Chart(ctx, {
+    if (chartIdebInstance) chartIdebInstance.destroy();
+
+    chartIdebInstance = new Chart(canvas, {
         type: 'bar',
         data: {
             labels: ['Língua Portuguesa', 'Matemática'],
             datasets: [{
-                label: 'Média do Colégio (Saeb 2025)',
+                label: 'Pontuação Saeb',
                 data: [271.5, 281.28],
-                backgroundColor: ['#1B4998', '#C5A059'],
-                borderWidth: 1
+                backgroundColor: ['#1B4998', '#C5A059']
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { labels: { color: getThemeTextColor() } },
-                title: { display: true, text: 'Pontuação Padronizada Saeb (Escala 0-500)', color: getThemeTextColor() }
+                legend: { labels: { color: getTextColor() } },
+                title: { display: true, text: 'Proficiência Média (Anos Finais)', color: getTextColor() }
             },
             scales: {
-                y: { ticks: { color: getThemeTextColor() }, beginAtZero: false, min: 200, max: 350 },
-                x: { ticks: { color: getThemeTextColor() } }
+                y: { ticks: { color: getTextColor() }, min: 200, max: 350 },
+                x: { ticks: { color: getTextColor() } }
             }
         }
     });
 }
 
-function initAprendizadoChart() {
-    const ctx = document.getElementById('chartEvolucaoAprendizado');
-    if (!ctx) return;
-    if (chartAprendizado) chartAprendizado.destroy();
+function renderAprendizadoChart() {
+    const canvas = document.getElementById('chartEvolucaoAprendizado');
+    if (!canvas || typeof Chart === 'undefined') return;
 
-    chartAprendizado = new Chart(ctx, {
+    if (chartAprendizadoInstance) chartAprendizadoInstance.destroy();
+
+    chartAprendizadoInstance = new Chart(canvas, {
         type: 'line',
         data: {
             labels: ['2019', '2021', '2023'],
             datasets: [
                 {
-                    label: 'Português Adequado (%)',
+                    label: 'Português (%)',
                     data: [36, 38, 32],
                     borderColor: '#1B4998',
                     backgroundColor: '#1B4998',
-                    tension: 0.2,
-                    fill: false
+                    tension: 0.2
                 },
                 {
-                    label: 'Matemática Adequada (%)',
+                    label: 'Matemática (%)',
                     data: [28, 25, 26],
                     borderColor: '#C5A059',
                     backgroundColor: '#C5A059',
-                    tension: 0.2,
-                    fill: false
+                    tension: 0.2
                 }
             ]
         },
@@ -319,26 +327,27 @@ function initAprendizadoChart() {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { labels: { color: getThemeTextColor() } },
-                title: { display: true, text: 'Evolução % de Alunos no Nível Adequado (9º Ano)', color: getThemeTextColor() }
+                legend: { labels: { color: getTextColor() } },
+                title: { display: true, text: 'Aprendizado Adequado (9º Ano)', color: getTextColor() }
             },
             scales: {
-                y: { ticks: { color: getThemeTextColor() }, beginAtZero: true, max: 50 },
-                x: { ticks: { color: getThemeTextColor() } }
+                y: { ticks: { color: getTextColor() }, beginAtZero: true, max: 50 },
+                x: { ticks: { color: getTextColor() } }
             }
         }
     });
 }
 
-function initRendimentoChart() {
-    const ctx = document.getElementById('chartRendimentoEnsinoMedio');
-    if (!ctx) return;
-    if (chartRendimento) chartRendimento.destroy();
+function renderRendimentoChart() {
+    const canvas = document.getElementById('chartRendimentoEnsinoMedio');
+    if (!canvas || typeof Chart === 'undefined') return;
 
-    chartRendimento = new Chart(ctx, {
+    if (chartRendimentoInstance) chartRendimentoInstance.destroy();
+
+    chartRendimentoInstance = new Chart(canvas, {
         type: 'bar',
         data: {
-            labels: ['1º Ano EM', '2º Ano EM', '3º Ano EM'],
+            labels: ['1º EM', '2º EM', '3º EM'],
             datasets: [
                 {
                     label: 'Aprovação (%)',
@@ -356,12 +365,12 @@ function initRendimentoChart() {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { labels: { color: getThemeTextColor() } },
-                title: { display: true, text: 'Rendimento Escolar Por Série (Ensino Médio 2025)', color: getThemeTextColor() }
+                legend: { labels: { color: getTextColor() } },
+                title: { display: true, text: 'Rendimento (Ensino Médio)', color: getTextColor() }
             },
             scales: {
-                y: { ticks: { color: getThemeTextColor() }, beginAtZero: true, max: 100 },
-                x: { ticks: { color: getThemeTextColor() } }
+                y: { ticks: { color: getTextColor() }, beginAtZero: true, max: 100 },
+                x: { ticks: { color: getTextColor() } }
             }
         }
     });
