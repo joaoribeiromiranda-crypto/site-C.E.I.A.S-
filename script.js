@@ -1,46 +1,32 @@
-// Credenciais de Acesso CMS
+// Credenciais de Administração
 const ADMIN_EMAIL = "sjpambrosiasabatovich@seed.pr.gov.br";
 const ADMIN_PASS = "ceias2026";
 
-// Notícias Padrão
-const defaultNews = [
-    {
-        id: 'destaque-ideb',
-        title: 'C.E.I.A.S. Alcança Nota 5,8 no IDEB dos Anos Finais',
-        category: 'institucional',
-        author: `Gestão (${ADMIN_EMAIL})`,
-        date: '10/10/2026',
-        excerpt: 'Combinação de excelente índice de aprovação (99,0%) e nota média SAEB de 5,88 fortalece o colégio.',
-        content: 'O Colégio Estadual do Campo Irmã Ambrósia Sabatovich celebrou o excelente resultado no IDEB. O indicador é composto pela taxa de aprovação de 99,0% combinada com médias expressivas no exame Saeb: 271,5 em Língua Portuguesa e 281,3 em Matemática.'
-    },
-    {
-        id: 'feira-campo',
-        title: 'Feira do Conhecimento Rural Celebra Sustentabilidade na Colônia Marcelino',
-        category: 'projetos',
-        author: `Grêmio Estudantil`,
-        date: '24/09/2026',
-        excerpt: 'Estudantes apresentaram maquetes ecológicas, projetos de hortas e inovações em agricultura familiar.',
-        content: 'A feira anual reuniu a comunidade local para prestigiar projetos ecológicos e práticos desenvolvidos pelos alunos do Ensino Fundamental II e Ensino Médio do Campo.'
-    }
-];
-
-// Instâncias de Gráficos
+// Instâncias dos Gráficos
 let chartIdebInstance = null;
 let chartAprendizadoInstance = null;
 let chartRendimentoInstance = null;
 
-let newsDatabase = JSON.parse(localStorage.getItem('ceias_news_db')) || defaultNews;
+// Eventos Iniciais Padrão
+const defaultEvents = [
+    { id: 'evt-1', date: '28 SET', title: 'Simulado Prova Paraná', desc: 'Turmas de 9º Ano e 3º EM' },
+    { id: 'evt-2', date: '05 OUT', title: 'Mostra Cultural da Colônia', desc: 'Apresentações na quadra coberta' }
+];
+
+// Carregamento do LocalStorage
+let newsDatabase = JSON.parse(localStorage.getItem('ceias_news_db')) || [];
+let eventsDatabase = JSON.parse(localStorage.getItem('ceias_events_db')) || defaultEvents;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Data Formatada no Topo
+    // 1. Data do Topo
     const dateEl = document.getElementById('current-date');
     if (dateEl) {
         const now = new Date();
         dateEl.innerText = now.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
     }
 
-    // Toggle Menu Mobile
+    // 2. Menu Mobile
     const mobileMenuBtn = document.getElementById('mobile-menu-toggle');
     const navLinksContainer = document.getElementById('nav-links-container');
 
@@ -50,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Navegação entre Abas
+    // 3. Navegação Suave entre Abas
     const navButtons = document.querySelectorAll('.nav-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
 
@@ -66,10 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 activePane.classList.add('active');
             }
 
-            // Fecha o menu móvel ao clicar em uma aba
             if (navLinksContainer) navLinksContainer.classList.remove('mobile-open');
 
-            // Renderiza gráficos com pequeno atraso para adaptação de tela
             setTimeout(() => {
                 if (tabId === 'ideb') renderIdebChart();
                 if (tabId === 'aprendizado') renderAprendizadoChart();
@@ -78,10 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Renderiza Notícias Iniciais
+    // 4. Inicializa Notícias e Eventos
     renderNews(newsDatabase);
+    renderEvents(eventsDatabase);
 
-    // Filtro por Categoria
+    // 5. Filtros de Notícia
     const filterButtons = document.querySelectorAll('.filter-btn');
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -96,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Campo de Busca
+    // 6. Busca
     const searchInput = document.getElementById('search-input');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -108,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Menu de Configurações
+    // 7. Acessibilidade
     const gearBtn = document.getElementById('gear-btn');
     const settingsMenu = document.getElementById('settings-menu');
     const toggleThemeBtn = document.getElementById('toggle-theme-btn');
@@ -164,13 +149,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Funções de Notícias
+// Renderizador do Feed de Notícias
 function renderNews(list) {
     const container = document.getElementById('news-container');
     if (!container) return;
 
     if (list.length === 0) {
-        container.innerHTML = `<p style="padding:15px; text-align:center;">Nenhuma notícia encontrada.</p>`;
+        container.innerHTML = `
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 30px; text-align: center; border-radius: 4px;">
+                <p style="font-size: 1.1rem; color: var(--royal-blue); font-weight: bold; margin-bottom: 8px;">Nenhuma matéria publicada ainda.</p>
+                <p style="font-size: 0.85rem; color: var(--muted-color);">Utilize o botão "🔑 Painel CMS" para publicar novas matérias no site.</p>
+            </div>`;
         return;
     }
 
@@ -182,6 +171,27 @@ function renderNews(list) {
             <p class="excerpt">${item.excerpt}</p>
             <button class="read-more-btn" onclick="openArticleModal('${item.id}')">Ler Matéria Completa →</button>
         </article>
+    `).join('');
+}
+
+// Renderizador da Agenda de Eventos da Sidebar
+function renderEvents(list) {
+    const container = document.getElementById('events-container');
+    if (!container) return;
+
+    if (list.length === 0) {
+        container.innerHTML = `<li style="font-size:0.85rem; color:var(--muted-color); padding:10px 0;">Nenhum evento agendado.</li>`;
+        return;
+    }
+
+    container.innerHTML = list.map(evt => `
+        <li>
+            <div class="event-date">${evt.date}</div>
+            <div class="event-details">
+                <strong>${evt.title}</strong>
+                <p>${evt.desc}</p>
+            </div>
+        </li>
     `).join('');
 }
 
@@ -208,59 +218,112 @@ function closeCMSModal() {
     document.getElementById('cms-modal').classList.add('hidden');
 }
 
+// Alternar entre campos de Notícia e campos de Evento no CMS
+function toggleCMSFields() {
+    const type = document.getElementById('cms-type').value;
+    const newsFields = document.getElementById('cms-news-fields');
+    const eventFields = document.getElementById('cms-event-fields');
+
+    if (type === 'news') {
+        newsFields.classList.remove('hidden');
+        eventFields.classList.add('hidden');
+    } else {
+        newsFields.classList.add('hidden');
+        eventFields.classList.remove('hidden');
+    }
+}
+
+// Operação CMS Unificada (Gerencia Notícias E Eventos)
 function handleCMSPublish(event) {
     event.preventDefault();
 
     const inputEmail = document.getElementById('cms-email').value.trim();
     const inputPass = document.getElementById('cms-password').value.trim();
-    const title = document.getElementById('cms-title').value.trim();
-    const category = document.getElementById('cms-category').value;
+    const type = document.getElementById('cms-type').value;
     const action = document.getElementById('cms-action').value;
-    const excerpt = document.getElementById('cms-excerpt').value.trim();
-    const content = document.getElementById('cms-content').value.trim();
 
     if (inputEmail !== ADMIN_EMAIL || inputPass !== ADMIN_PASS) {
         alert("❌ ACESSO NEGADO: E-mail ou Senha incorretos!");
         return;
     }
 
-    if (action === 'remove') {
-        const countBefore = newsDatabase.length;
-        newsDatabase = newsDatabase.filter(item => !item.title.toLowerCase().includes(title.toLowerCase()));
-        
-        if (newsDatabase.length < countBefore) {
-            localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
-            alert(`✅ Matéria "${title}" removida.`);
+    if (type === 'news') {
+        const title = document.getElementById('cms-title').value.trim();
+        const category = document.getElementById('cms-category').value;
+        const excerpt = document.getElementById('cms-excerpt').value.trim();
+        const content = document.getElementById('cms-content').value.trim();
+
+        if (action === 'remove') {
+            const countBefore = newsDatabase.length;
+            newsDatabase = newsDatabase.filter(item => !item.title.toLowerCase().includes(title.toLowerCase()));
+            if (newsDatabase.length < countBefore) {
+                localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
+                alert(`✅ Matéria "${title}" removida.`);
+            } else {
+                alert('⚠️ Nenhuma matéria correspondente foi encontrada.');
+            }
         } else {
-            alert('⚠️ Nenhuma matéria correspondente foi encontrada.');
-        }
-    } else {
-        if (!excerpt || !content) {
-            alert("⚠️ Preencha todos os campos.");
-            return;
-        }
+            if (!title || !excerpt || !content) {
+                alert("⚠️ Preencha o Título, Resumo e Conteúdo da matéria.");
+                return;
+            }
 
-        const newArticle = {
-            id: 'news-' + Date.now(),
-            title: title,
-            category: category,
-            author: `Gestão (${ADMIN_EMAIL})`,
-            date: new Date().toLocaleDateString('pt-BR'),
-            excerpt: excerpt,
-            content: content
-        };
+            const newArticle = {
+                id: 'news-' + Date.now(),
+                title: title,
+                category: category,
+                author: `Gestão (${ADMIN_EMAIL})`,
+                date: new Date().toLocaleDateString('pt-BR'),
+                excerpt: excerpt,
+                content: content
+            };
 
-        newsDatabase.unshift(newArticle);
-        localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
-        alert(`🎉 Nova matéria publicada com sucesso!`);
+            newsDatabase.unshift(newArticle);
+            localStorage.setItem('ceias_news_db', JSON.stringify(newsDatabase));
+            alert(`🎉 Nova matéria publicada com sucesso!`);
+        }
+        renderNews(newsDatabase);
+
+    } else if (type === 'event') {
+        const eventTitle = document.getElementById('cms-event-title').value.trim();
+        const eventDate = document.getElementById('cms-event-date').value.trim();
+        const eventDesc = document.getElementById('cms-event-desc').value.trim();
+
+        if (action === 'remove') {
+            const countBefore = eventsDatabase.length;
+            eventsDatabase = eventsDatabase.filter(e => !e.title.toLowerCase().includes(eventTitle.toLowerCase()));
+            if (eventsDatabase.length < countBefore) {
+                localStorage.setItem('ceias_events_db', JSON.stringify(eventsDatabase));
+                alert(`✅ Evento "${eventTitle}" removido.`);
+            } else {
+                alert('⚠️ Nenhum evento correspondente encontrado.');
+            }
+        } else {
+            if (!eventTitle || !eventDate) {
+                alert("⚠️ Preencha a Data e o Título do Evento.");
+                return;
+            }
+
+            const newEvent = {
+                id: 'evt-' + Date.now(),
+                date: eventDate,
+                title: eventTitle,
+                desc: eventDesc || 'Evento escolar'
+            };
+
+            eventsDatabase.push(newEvent);
+            localStorage.setItem('ceias_events_db', JSON.stringify(eventsDatabase));
+            alert(`📅 Evento adicionado à agenda com sucesso!`);
+        }
+        renderEvents(eventsDatabase);
     }
 
-    renderNews(newsDatabase);
     closeCMSModal();
     document.getElementById('cms-form').reset();
+    toggleCMSFields();
 }
 
-// Renderização de Gráficos Otimizados
+// Renderização dos Gráficos com Chart.js
 function getTextColor() {
     return document.body.classList.contains('dark-theme') ? '#E2E8F0' : '#222222';
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Fundo Animado -->
+    <!-- Fundo Animado Leve -->
     <div class="animated-bg" aria-hidden="true">
         <div class="bg-shape shape-1"></div>
         <div class="bg-shape shape-2"></div>
@@ -29,7 +29,7 @@
         <div class="container header-main">
             <!-- Logo do Colégio -->
             <div class="logo-box">
-                <img src="file:///tmp/guest-qenvai/Downloads/logo%20colegio.jpg" alt="Logo do Colégio C.E.I.A.S." class="school-logo-img">
+                <img src="file:///home/escola/Downloads/logo%20colegio.jpg" alt="Logo do Colégio C.E.I.A.S." class="school-logo-img">
             </div>
             
             <div class="title-box">
@@ -43,7 +43,7 @@
             </div>
         </div>
 
-        <!-- Barra de Navegação com Suporte a Menu Hambúrguer em Celulares -->
+        <!-- Barra de Navegação -->
         <nav class="nav-bar">
             <div class="container nav-content">
                 <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Abrir Menu">
@@ -69,7 +69,7 @@
         <div class="alert-banner">
             <span class="alert-label">DESTAQUES QEDU</span>
             <marquee behavior="scroll" direction="left" id="urgent-notice">
-                📢 IDEB dos Anos Finais atinge nota 5,8 (Aprendizado 5,88 x Fluxo 0,99)[cite: 9] | Média no ENEM: 501,18 pts[cite: 8] | Aprovação nos Anos Finais: 99,0%[cite: 5] | E-mail de Contato: sjpambrosiasabatovich@seed.pr.gov.br
+                📢 IDEB dos Anos Finais atinge nota 5,8 (Aprendizado 5,88 x Fluxo 0,99) | Média no ENEM: 501,18 pts | Aprovação nos Anos Finais: 99,0% | E-mail de Contato: sjpambrosiasabatovich@seed.pr.gov.br
             </marquee>
         </div>
     </div>
@@ -77,19 +77,9 @@
     <!-- Conteúdo Principal -->
     <main class="container main-layout">
 
-        <!-- ABA 1: NOTÍCIAS -->
+        <!-- ABA 1: NOTÍCIAS E EVENTOS -->
         <section id="tab-home" class="tab-pane active">
             
-            <div class="hero-article">
-                <div class="hero-content">
-                    <span class="category-badge">DESEMPENHO ESCOLAR</span>
-                    <h2 class="hero-title">C.E.I.A.S. Conquista Nota 5,8 no IDEB dos Anos Finais</h2>
-                    <p class="article-meta">Fonte: Microdados Saeb/INEP • Responsável: sjpambrosiasabatovich@seed.pr.gov.br</p>
-                    <p class="hero-excerpt">Combinação de excelente índice de aprovação (99,0%) e consistente nota média nas provas de Português e Matemática posiciona o colégio como referência de ensino no campo em São José dos Pinhais[cite: 5, 8, 9].</p>
-                    <button class="read-more-btn" onclick="openArticleModal('destaque-ideb')">Ler Matéria Completa →</button>
-                </div>
-            </div>
-
             <div class="content-grid">
                 <div class="news-feed-column">
                     <div class="filter-bar">
@@ -103,13 +93,13 @@
                         </div>
                     </div>
 
-                    <div id="news-container" class="news-list">
-                        <!-- Notícias via JS -->
-                    </div>
+                    <!-- Feed Dinâmico de Notícias -->
+                    <div id="news-container" class="news-list"></div>
                 </div>
 
+                <!-- Sidebar com Indicadores e Eventos Dinâmicos -->
                 <aside class="sidebar-column">
-                    <div class="sidebar-card">
+                    <div class="sidebar-card hover-card">
                         <h3 class="widget-title">📌 Resumo do Colégio</h3>
                         <div class="qedu-quick-item">
                             <span>Código INEP</span>
@@ -117,43 +107,30 @@
                         </div>
                         <div class="qedu-quick-item">
                             <span>IDEB Anos Finais</span>
-                            <strong>5,8</strong>[cite: 8]
+                            <strong>5,8</strong>
                         </div>
                         <div class="qedu-quick-item">
                             <span>Aprovação Geral (Fundamental)</span>
-                            <strong>99,0%</strong>[cite: 5]
+                            <strong>99,0%</strong>
                         </div>
                         <div class="qedu-quick-item">
                             <span>Aprovação Geral (Médio)</span>
-                            <strong>92,4%</strong>[cite: 5]
+                            <strong>92,4%</strong>
                         </div>
                         <div class="qedu-quick-item">
                             <span>Nível Socioeconômico</span>
-                            <strong>Médio-Alto</strong>[cite: 3]
+                            <strong>Médio-Alto</strong>
                         </div>
                         <div class="qedu-quick-item">
                             <span>Total de Alunos</span>
-                            <strong>474</strong>[cite: 8]
+                            <strong>474</strong>
                         </div>
                     </div>
 
-                    <div class="sidebar-card">
+                    <div class="sidebar-card hover-card">
                         <h3 class="widget-title">📅 Próximos Eventos</h3>
-                        <ul class="event-list">
-                            <li>
-                                <div class="event-date">28 SET</div>
-                                <div class="event-details">
-                                    <strong>Simulado Prova Paraná</strong>
-                                    <p>Turmas de 9º Ano e 3º EM</p>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="event-date">05 OUT</div>
-                                <div class="event-details">
-                                    <strong>Mostra Cultural da Colônia</strong>
-                                    <p>Apresentações na quadra coberta</p>
-                                </div>
-                            </li>
+                        <ul id="events-container" class="event-list">
+                            <!-- Eventos são renderizados dinamicamente pelo JS -->
                         </ul>
                     </div>
                 </aside>
@@ -164,43 +141,43 @@
         <section id="tab-ideb" class="tab-pane">
             <h2 class="section-title">Índice de Desenvolvimento da Educação Básica (IDEB)</h2>
             
-            <div class="metrics-summary-banner">
+            <div class="metrics-summary-banner hover-card">
                 <div class="summary-box">
                     <span>Aprendizado (Nota Saeb)</span>
-                    <strong>5,88</strong>[cite: 9]
+                    <strong>5,88</strong>
                 </div>
                 <div class="operator">×</div>
                 <div class="summary-box">
                     <span>Fluxo Escolar (Aprovação)</span>
-                    <strong>0,99</strong>[cite: 9]
+                    <strong>0,99</strong>
                 </div>
                 <div class="operator">=</div>
                 <div class="summary-box highlight-box">
                     <span>IDEB Final</span>
-                    <strong>5,8</strong>[cite: 8, 9]
+                    <strong>5,8</strong>
                 </div>
             </div>
 
             <div class="data-group-title">Gráfico Comparativo de Proficiência Média (Saeb)</div>
-            <div class="chart-wrapper">
+            <div class="chart-wrapper hover-card">
                 <canvas id="chartIdebProficiencia"></canvas>
             </div>
 
             <div class="metrics-grid">
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>Língua Portuguesa (Saeb)</h3>
-                    <div class="big-number">271,5 pts</div>[cite: 9]
-                    <p>Média padronizada obtida pelos estudantes dos Anos Finais[cite: 9].</p>
+                    <div class="big-number">271,5 pts</div>
+                    <p>Média padronizada obtida pelos estudantes dos Anos Finais.</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>Matemática (Saeb)</h3>
-                    <div class="big-number">281,3 pts</div>[cite: 9]
-                    <p>Média padronizada obtida pelos estudantes dos Anos Finais[cite: 9].</p>
+                    <div class="big-number">281,3 pts</div>
+                    <p>Média padronizada obtida pelos estudantes dos Anos Finais.</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>Média ENEM (Concluintes)</h3>
-                    <div class="big-number">501,2 pts</div>[cite: 8]
-                    <p>Desempenho geral nas provas do Exame Nacional do Ensino Médio[cite: 8].</p>
+                    <div class="big-number">501,2 pts</div>
+                    <p>Desempenho geral nas provas do Exame Nacional do Ensino Médio.</p>
                 </div>
             </div>
         </section>
@@ -208,52 +185,52 @@
         <!-- ABA 3: APRENDIZADO -->
         <section id="tab-aprendizado" class="tab-pane">
             <h2 class="section-title">Evolução do Aprendizado Adequado (9º Ano)</h2>
-            <p class="section-desc">Porcentagem de estudantes que demonstraram conhecimento considerado adequado para sua etapa escolar[cite: 6].</p>
+            <p class="section-desc">Porcentagem de estudantes que demonstraram conhecimento considerado adequado para sua etapa escolar.</p>
 
             <div class="data-group-title">Evolução Histórica do Aprendizado (2019 vs 2021 vs 2023)</div>
-            <div class="chart-wrapper">
+            <div class="chart-wrapper hover-card">
                 <canvas id="chartEvolucaoAprendizado"></canvas>
             </div>
 
             <div class="data-group-title">Distribuição por Nível de Proficiência (Saeb 2023 - 9º Ano)</div>
-            <div class="table-responsive">
+            <div class="table-responsive hover-card">
                 <table class="data-table">
                     <thead>
                         <tr>
                             <th>Nível</th>
-                            <th>2019</th>[cite: 6]
-                            <th>2021</th>[cite: 6]
-                            <th>2023</th>[cite: 6]
+                            <th>2019</th>
+                            <th>2021</th>
+                            <th>2023</th>
                             <th>Interpretação</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><strong>Avançado</strong></td>
-                            <td>4% (2 alunos)</td>[cite: 6]
-                            <td>2%</td>[cite: 6]
-                            <td><span class="green-cell">3%</span></td>[cite: 6]
+                            <td>4% (2 alunos)</td>
+                            <td>2%</td>
+                            <td><span class="green-cell">3%</span></td>
                             <td>Dominam os conteúdos com excelência</td>
                         </tr>
                         <tr>
                             <td><strong>Proficiente</strong></td>
-                            <td>24% (14 alunos)</td>[cite: 6]
-                            <td>23%</td>[cite: 6]
-                            <td><span class="green-cell">23%</span></td>[cite: 6]
+                            <td>24% (14 alunos)</td>
+                            <td>23%</td>
+                            <td><span class="green-cell">23%</span></td>
                             <td>Demonstram o aprendizado esperado</td>
                         </tr>
                         <tr>
                             <td><strong>Básico</strong></td>
-                            <td>54% (32 alunos)</td>[cite: 6]
-                            <td>58%</td>[cite: 6]
-                            <td><span class="yellow-cell">55%</span></td>[cite: 6]
+                            <td>54% (32 alunos)</td>
+                            <td>58%</td>
+                            <td><span class="yellow-cell">55%</span></td>
                             <td>Necessitam de reforço para consolidação</td>
                         </tr>
                         <tr>
                             <td><strong>Insuficiente</strong></td>
-                            <td>18% (11 alunos)</td>[cite: 6]
-                            <td>17%</td>[cite: 6]
-                            <td><span class="red-cell">18%</span></td>[cite: 6]
+                            <td>18% (11 alunos)</td>
+                            <td>17%</td>
+                            <td><span class="red-cell">18%</span></td>
                             <td>Foco prioritário em recuperação</td>
                         </tr>
                     </tbody>
@@ -266,12 +243,12 @@
             <h2 class="section-title">Taxas de Rendimento Escolar & Distorção Idade-Série</h2>
 
             <div class="data-group-title">Comparativo de Aprovação vs Reprovação por Ano (Ensino Médio)</div>
-            <div class="chart-wrapper">
+            <div class="chart-wrapper hover-card">
                 <canvas id="chartRendimentoEnsinoMedio"></canvas>
             </div>
 
             <div class="data-group-title">Tabela Detalhada de Rendimento Escolar</div>
-            <div class="table-responsive">
+            <div class="table-responsive hover-card">
                 <table class="data-table">
                     <thead>
                         <tr>
@@ -284,27 +261,27 @@
                     <tbody>
                         <tr>
                             <td><strong>Anos Finais (Fundamental)</strong></td>
-                            <td class="green-cell">99,0%</td>[cite: 5]
-                            <td>1,0%</td>[cite: 5]
-                            <td class="green-cell">0,0%</td>[cite: 5]
+                            <td class="green-cell">99,0%</td>
+                            <td>1,0%</td>
+                            <td class="green-cell">0,0%</td>
                         </tr>
                         <tr>
                             <td><strong>1º Ano do Ensino Médio</strong></td>
-                            <td>88,1%</td>[cite: 5]
-                            <td class="red-cell">11,9%</td>[cite: 5]
-                            <td class="green-cell">0,0%</td>[cite: 5]
+                            <td>88,1%</td>
+                            <td class="red-cell">11,9%</td>
+                            <td class="green-cell">0,0%</td>
                         </tr>
                         <tr>
                             <td><strong>2º Ano do Ensino Médio</strong></td>
-                            <td class="green-cell">98,3%</td>[cite: 5]
-                            <td>1,7%</td>[cite: 5]
-                            <td class="green-cell">0,0%</td>[cite: 5]
+                            <td class="green-cell">98,3%</td>
+                            <td>1,7%</td>
+                            <td class="green-cell">0,0%</td>
                         </tr>
                         <tr>
                             <td><strong>3º Ano do Ensino Médio</strong></td>
-                            <td>90,2%</td>[cite: 5]
-                            <td>9,8%</td>[cite: 5]
-                            <td class="green-cell">0,0%</td>[cite: 5]
+                            <td>90,2%</td>
+                            <td>9,8%</td>
+                            <td class="green-cell">0,0%</td>
                         </tr>
                     </tbody>
                 </table>
@@ -312,25 +289,25 @@
 
             <div class="data-group-title">Distorção Idade-Série (Atraso de 2 anos ou mais)</div>
             <div class="metrics-grid">
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>Média no Ensino Médio</h3>
-                    <div class="big-number">7,7%</div>[cite: 3]
-                    <p>Apenas ~8 em cada 100 alunos estão fora da faixa etária[cite: 3].</p>
+                    <div class="big-number">7,7%</div>
+                    <p>Apenas ~8 em cada 100 alunos estão fora da faixa etária.</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>1º Ano Médio</h3>
-                    <div class="big-number">8,6%</div>[cite: 3]
-                    <p>Taxa de distorção no ano inicial[cite: 3].</p>
+                    <div class="big-number">8,6%</div>
+                    <p>Taxa de distorção no ano inicial.</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>2º Ano Médio</h3>
-                    <div class="big-number">6,6%</div>[cite: 3]
-                    <p>Menor taxa de distorção do ciclo[cite: 3].</p>
+                    <div class="big-number">6,6%</div>
+                    <p>Menor taxa de distorção do ciclo.</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>3º Ano Médio</h3>
-                    <div class="big-number">8,0%</div>[cite: 3]
-                    <p>Taxa de distorção na conclusão[cite: 3].</p>
+                    <div class="big-number">8,0%</div>
+                    <p>Taxa de distorção na conclusão.</p>
                 </div>
             </div>
         </section>
@@ -340,46 +317,46 @@
             <h2 class="section-title">Estrutura e Recursos do Colégio (Censo INEP)</h2>
 
             <div class="metrics-grid mb-30">
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>Total de Matrículas</h3>
-                    <div class="big-number">474</div>[cite: 8]
-                    <p>305 nos Anos Finais | 169 no Ensino Médio[cite: 4]</p>
+                    <div class="big-number">474</div>
+                    <p>305 nos Anos Finais | 169 no Ensino Médio</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>Professores Ativos</h3>
-                    <div class="big-number">19</div>[cite: 4, 8]
-                    <p>Corpo docente qualificado[cite: 4]</p>
+                    <div class="big-number">19</div>
+                    <p>Corpo docente qualificado</p>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card hover-card">
                     <h3>Localização</h3>
-                    <div class="big-number-sm">Zona Rural</div>[cite: 8]
-                    <p>Colônia Marcelino[cite: 8]</p>
+                    <div class="big-number-sm">Zona Rural</div>
+                    <p>Colônia Marcelino</p>
                 </div>
             </div>
 
             <div class="data-group-title">Infraestrutura e Equipamentos Disponíveis</div>
             <div class="infra-grid">
-                <div class="infra-box status-ok">✔️ Acessibilidade Completa</div>[cite: 7, 8]
-                <div class="infra-box status-ok">✔️ Alimentação Escolar Gratuita</div>[cite: 7, 8]
-                <div class="infra-box status-ok">✔️ Biblioteca e Sala de Leitura</div>[cite: 7, 8]
-                <div class="infra-box status-ok">✔️ Cozinha e Refeitório Amplo</div>[cite: 7, 8]
-                <div class="infra-box status-ok">✔️ Quadra de Esportes Coberta</div>[cite: 7]
-                <div class="infra-box status-ok">✔️ Laboratório de Informática</div>[cite: 7]
-                <div class="infra-box status-ok">✔️ Sala de Professores e Diretoria</div>[cite: 7]
-                <div class="infra-box status-ok">✔️ Internet e Computadores</div>[cite: 7]
+                <div class="infra-box status-ok hover-card">✔️ Acessibilidade Completa</div>
+                <div class="infra-box status-ok hover-card">✔️ Alimentação Escolar Gratuita</div>
+                <div class="infra-box status-ok hover-card">✔️ Biblioteca e Sala de Leitura</div>
+                <div class="infra-box status-ok hover-card">✔️ Cozinha e Refeitório Amplo</div>
+                <div class="infra-box status-ok hover-card">✔️ Quadra de Esportes Coberta</div>
+                <div class="infra-box status-ok hover-card">✔️ Laboratório de Informática</div>
+                <div class="infra-box status-ok hover-card">✔️ Sala de Professores e Diretoria</div>
+                <div class="infra-box status-ok hover-card">✔️ Internet e Computadores</div>
             </div>
 
             <div class="data-group-title">Disciplinas Ofertadas</div>
             <div class="disciplines-grid">
-                <span>Língua Portuguesa</span>[cite: 8]
-                <span>Matemática</span>[cite: 8]
-                <span>Inglês</span>[cite: 8]
-                <span>Ciências</span>[cite: 8]
-                <span>Física</span>[cite: 8]
-                <span>Geografia</span>[cite: 8]
-                <span>Ensino Religioso</span>[cite: 8]
-                <span>Artes</span>[cite: 8]
-                <span>Educação Física</span>[cite: 8]
+                <span>Língua Portuguesa</span>
+                <span>Matemática</span>
+                <span>Inglês</span>
+                <span>Ciências</span>
+                <span>Física</span>
+                <span>Geografia</span>
+                <span>Ensino Religioso</span>
+                <span>Artes</span>
+                <span>Educação Física</span>
             </div>
         </section>
 
@@ -388,16 +365,16 @@
             <h2 class="section-title">Sobre a Instituição & Contato Direto</h2>
             
             <div class="about-grid">
-                <div class="about-info">
+                <div class="about-info hover-card">
                     <h3>Nossa História e Missão</h3>
-                    <p>O <strong>Colégio Estadual do Campo Irmã Ambrósia Sabatovich (C.E.I.A.S.)</strong> tem como compromisso oferecer ensino público gratuito de altíssima qualidade para toda a comunidade rural da Colônia Marcelino[cite: 8].</p>
+                    <p>O <strong>Colégio Estadual do Campo Irmã Ambrósia Sabatovich (C.E.I.A.S.)</strong> tem como compromisso oferecer ensino público gratuito de altíssima qualidade para toda a comunidade rural da Colônia Marcelino.</p>
                 </div>
 
                 <div class="contact-cards-container">
                     <h3>✉️ Contato Institucional Oficial</h3>
                     <p class="contact-subtitle">Atendimento por e-mail oficial:</p>
 
-                    <div class="contact-card">
+                    <div class="contact-card hover-card">
                         <div class="contact-icon">📧</div>
                         <div class="contact-details">
                             <strong>E-mail Institucional Único:</strong>
@@ -405,11 +382,11 @@
                         </div>
                     </div>
 
-                    <div class="contact-card">
+                    <div class="contact-card hover-card">
                         <div class="contact-icon">📍</div>
                         <div class="contact-details">
                             <strong>Endereço da Escola:</strong>
-                            <p class="selectable-text">Estrada Ver. Domingos Benevenuto Moletta, 17173 — Colônia Marcelino, São José dos Pinhais - PR (CEP 83024-899)</p>[cite: 8]
+                            <p class="selectable-text">Estrada Ver. Domingos Benevenuto Moletta, 17173 — Colônia Marcelino, São José dos Pinhais - PR (CEP 83024-899)</p>
                         </div>
                     </div>
                 </div>
@@ -446,11 +423,12 @@
         </div>
     </div>
 
+    <!-- Modal CMS Otimizado para Notícias e Eventos -->
     <div id="cms-modal" class="modal-overlay hidden">
         <div class="modal-card cms-card">
             <button class="close-modal-btn" onclick="closeCMSModal()">✕</button>
             <h2>🔑 Painel de Gestão e Publicação (CMS)</h2>
-            <p class="cms-subtitle">Acesso restrito da administração escolar.</p>
+            <p class="cms-subtitle">Gerencie notícias e agenda de eventos do colégio.</p>
 
             <form id="cms-form" onsubmit="handleCMSPublish(event)">
                 <div class="form-row">
@@ -466,15 +444,32 @@
 
                 <hr style="margin: 10px 0 15px 0; border: 0; border-top: 1px solid var(--border-color);">
 
-                <div class="form-group">
-                    <label>Título da Matéria:</label>
-                    <input type="text" id="cms-title" placeholder="Digite o título..." required>
-                </div>
-
                 <div class="form-row">
                     <div class="form-group">
+                        <label>Tipo de Publicação:</label>
+                        <select id="cms-type" onchange="toggleCMSFields()" required>
+                            <option value="news">📰 Notícia / Matéria</option>
+                            <option value="event">📅 Evento da Agenda</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ação:</label>
+                        <select id="cms-action" required>
+                            <option value="publish">Adicionar / Publicar</option>
+                            <option value="remove">Remover Existente</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Campos de Notícia -->
+                <div id="cms-news-fields">
+                    <div class="form-group">
+                        <label>Título da Matéria:</label>
+                        <input type="text" id="cms-title" placeholder="Digite o título exato...">
+                    </div>
+                    <div class="form-group">
                         <label>Categoria:</label>
-                        <select id="cms-category" required>
+                        <select id="cms-category">
                             <option value="projetos">Projetos</option>
                             <option value="esportes">Esportes</option>
                             <option value="cultura">Cultura</option>
@@ -482,22 +477,29 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label>Ação:</label>
-                        <select id="cms-action" required>
-                            <option value="publish">Publicar Matéria</option>
-                            <option value="remove">Remover Matéria</option>
-                        </select>
+                        <label>Resumo Curto:</label>
+                        <input type="text" id="cms-excerpt" placeholder="Breve resumo para o feed...">
+                    </div>
+                    <div class="form-group">
+                        <label>Texto Completo:</label>
+                        <textarea id="cms-content" rows="3" placeholder="Escreva o conteúdo completo..."></textarea>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Resumo Curto:</label>
-                    <input type="text" id="cms-excerpt" placeholder="Breve resumo...">
-                </div>
-
-                <div class="form-group">
-                    <label>Texto Completo:</label>
-                    <textarea id="cms-content" rows="4" placeholder="Escreva a matéria na íntegra..."></textarea>
+                <!-- Campos de Evento -->
+                <div id="cms-event-fields" class="hidden">
+                    <div class="form-group">
+                        <label>Data Curta (ex: 15 OUT):</label>
+                        <input type="text" id="cms-event-date" placeholder="Ex: 12 NOV">
+                    </div>
+                    <div class="form-group">
+                        <label>Título do Evento:</label>
+                        <input type="text" id="cms-event-title" placeholder="Ex: Reunião de Pais e Mestres">
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição Curta:</label>
+                        <input type="text" id="cms-event-desc" placeholder="Ex: No auditório às 19h">
+                    </div>
                 </div>
 
                 <button type="submit" class="submit-btn gold-submit">Confirmar Operação</button>
@@ -505,11 +507,11 @@
         </div>
     </div>
 
-    <!-- Rodapé com o texto solicitado -->
+    <!-- Rodapé -->
     <footer class="newspaper-footer">
         <div class="container footer-content">
             <div class="footer-left">
-                <p>&copy; 2026 Gazeta Sabatovich — C.E.I.A.S. • Dados do INEP/QEdu[cite: 8]</p>
+                <p>&copy; 2026 Gazeta Sabatovich — C.E.I.A.S. • Dados do INEP/QEdu</p>
                 <p>E-mail: <strong>sjpambrosiasabatovich@seed.pr.gov.br</strong></p>
             </div>
             <div class="footer-right">
